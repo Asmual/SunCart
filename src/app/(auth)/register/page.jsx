@@ -1,17 +1,19 @@
+/* eslint-disable react-hooks/static-components */
 "use client";
 
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { FiUser, FiMail, FiLock, FiEye, FiEyeOff, FiImage } from "react-icons/fi";
+import { FiUser, FiMail, FiLock, FiEye, FiEyeOff } from "react-icons/fi";
+import { FcGoogle } from "react-icons/fc";
 import toast, { Toaster } from "react-hot-toast";
-import { authClient } from "@/lib/auth-client"; 
+import { authClient } from "@/lib/auth-client";
 
 const RegisterPage = () => {
+  // Input form states configuration without photoUrl
   const [form, setForm] = useState({
     name: "",
     email: "",
-    photoUrl: "",
     password: "",
     repeatPassword: "",
   });
@@ -21,10 +23,12 @@ const RegisterPage = () => {
   const [showRepeatPass, setShowRepeatPass] = useState(false);
   const router = useRouter();
 
+  // Track state alterations dynamically
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  // Submit handler for processing email credentials signup
   const handleRegister = async (e) => {
     e.preventDefault();
 
@@ -36,11 +40,10 @@ const RegisterPage = () => {
     setLoading(true);
 
     try {
-      const { data, error } = await authClient.signUp.email({
+      const { error } = await authClient.signUp.email({
         email: form.email,
         password: form.password,
         name: form.name,
-        image: form.photoUrl,
       });
 
       if (error) {
@@ -57,14 +60,23 @@ const RegisterPage = () => {
     }
   };
 
+  // Google integration authentication execution block
   const handleGoogle = async () => {
-    toast.error("Google login is not available yet!");
+    try {
+      await authClient.signIn.social({
+        provider: "google",
+        callbackURL: "/",
+      });
+    } catch {
+      toast.error("Google login failed!");
+    }
   };
 
   return (
     <div className="min-h-screen bg-[#080818] flex items-center justify-center px-4 py-12">
       <Toaster position="top-center" />
 
+      {/* Main card panel interface layout */}
       <div className="w-full max-w-md bg-[#0f0f28] border border-white/8 rounded-2xl px-8 py-10">
         <div className="flex justify-center mb-8">
           <span className="text-white font-extrabold text-3xl">
@@ -80,8 +92,9 @@ const RegisterPage = () => {
           Join SunCart and shop the summer
         </p>
 
+        {/* Input credentials interaction grid framework */}
         <form onSubmit={handleRegister} className="space-y-4">
-          {/* Name */}
+          {/* Full Name input block wrapper */}
           <div className="relative">
             <FiUser className="absolute left-4 top-1/2 -translate-y-1/2 text-white/40 text-lg" />
             <input
@@ -95,7 +108,7 @@ const RegisterPage = () => {
             />
           </div>
 
-          {/* Email */}
+          {/* Email verification field row wrapper */}
           <div className="relative">
             <FiMail className="absolute left-4 top-1/2 -translate-y-1/2 text-white/40 text-lg" />
             <input
@@ -109,20 +122,7 @@ const RegisterPage = () => {
             />
           </div>
 
-          {/* Photo URL */}
-          <div className="relative">
-            <FiImage className="absolute left-4 top-1/2 -translate-y-1/2 text-white/40 text-lg" />
-            <input
-              type="url"
-              name="photoUrl"
-              value={form.photoUrl}
-              onChange={handleChange}
-              placeholder="Photo URL (optional)"
-              className="w-full pl-12 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/20 outline-none focus:border-[#ff4d6d] focus:bg-[#ff4d6d]/5 transition-all"
-            />
-          </div>
-
-          {/* Password */}
+          {/* Password secure encryption string handler */}
           <div className="relative">
             <FiLock className="absolute left-4 top-1/2 -translate-y-1/2 text-white/40 text-lg" />
             <input
@@ -143,7 +143,7 @@ const RegisterPage = () => {
             </button>
           </div>
 
-          {/* Confirm Password */}
+          {/* Duplicate protection confirm validation loop */}
           <div className="relative">
             <FiLock className="absolute left-4 top-1/2 -translate-y-1/2 text-white/40 text-lg" />
             <input
@@ -164,6 +164,7 @@ const RegisterPage = () => {
             </button>
           </div>
 
+          {/* Action trigger button structure */}
           <button
             type="submit"
             disabled={loading}
@@ -173,22 +174,23 @@ const RegisterPage = () => {
           </button>
         </form>
 
+        {/* Dynamic section bridge divider structure */}
         <div className="flex items-center gap-3 my-6">
           <div className="flex-1 h-px bg-white/10" />
           <span className="text-white/25 text-xs">or continue with</span>
           <div className="flex-1 h-px bg-white/10" />
         </div>
 
+        {/* Social account integration action trigger panel */}
         <button
           onClick={handleGoogle}
-          className="w-full flex items-center justify-center gap-2 border border-white/10 rounded-xl py-3 text-white/70 text-sm hover:bg-white/5 transition-all"
+          className="w-full flex items-center justify-center gap-2.5 border border-white/10 rounded-xl py-3 text-white/70 text-sm hover:bg-white/5 transition-all"
         >
-          <div className="w-5 h-5 bg-white rounded-full flex items-center justify-center text-[#ff4d6d] font-bold text-xs">
-            G
-          </div>
+          <FcGoogle className="text-xl shrink-0" />
           Continue with Google
         </button>
 
+        {/* Redirect toggle path string link reference wrapper */}
         <p className="text-center text-white/35 text-sm mt-6">
           Already have an account?{" "}
           <Link href="/login" className="text-[#ff4d6d] font-medium hover:underline">

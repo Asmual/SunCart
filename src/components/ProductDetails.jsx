@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
+
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -7,6 +8,7 @@ const ProductDetails = ({ product }) => {
   const [quantity, setQuantity] = useState(1);
   const router = useRouter();
 
+  // Handle missing resource state with fallback layout parameters
   if (!product) return (
     <div className="min-h-screen bg-[#120B35] flex items-center justify-center">
       <div className="text-center">
@@ -21,11 +23,12 @@ const ProductDetails = ({ product }) => {
 
   return (
     <div className="min-h-screen bg-[#0f0d3b] relative overflow-hidden">
-
+      {/* Decorative backdrop ambient light filter matrix */}
       <div className="fixed top-0 left-1/2 -translate-x-1/2 w-125 h-75 rounded-full blur-[120px] pointer-events-none z-0" />
 
       <div className="relative z-10 max-w-6xl mx-auto px-5">
-
+       
+        {/* Navigation router control anchor structure */}
         <div className="pt-5 pb-3 flex items-center gap-4">
           <button
             onClick={() => router.back()}
@@ -42,8 +45,10 @@ const ProductDetails = ({ product }) => {
           </div>
         </div>
 
+        {/* Core product showcase viewport matrix */}
         <div className="grid md:grid-cols-2 bg-white/3 border border-white/10 mx-auto w-full rounded-3xl overflow-hidden backdrop-blur-md">
-
+         
+          {/* Asset visualization layer containing custom metrics badges */}
           <div className="relative bg-[#f3eae1] flex items-center justify-center p-8 min-h-100 rounded-3xl md:rounded-r-none">
             <img
               src={image}
@@ -62,6 +67,7 @@ const ProductDetails = ({ product }) => {
             </div>
           </div>
 
+          {/* Product semantic records and data processing form fields */}
           <div className="p-8 md:p-12 flex flex-col gap-5 bg-[#120B35]/80 rounded-3xl md:rounded-l-none">
             {brand && (
               <p className="text-[#ff2d6b] text-xs font-bold uppercase tracking-[0.3em]">
@@ -73,6 +79,7 @@ const ProductDetails = ({ product }) => {
               {name}
             </h1>
 
+            {/* Social validation metrics score indicators */}
             <div className="flex items-center gap-3 flex-wrap">
               <div className="flex items-center gap-1.5 bg-yellow-400/10 border border-yellow-400/20 px-4 py-2 rounded-3xl">
                 <span>⭐</span>
@@ -89,6 +96,7 @@ const ProductDetails = ({ product }) => {
 
             <div className="h-px bg-linear-to-r from-[#ff2d6b]/30 via-white/10 to-transparent" />
 
+            {/* Commercial transactions pricing grid calculations */}
             <div className="flex items-baseline gap-3">
               <span className="text-5xl font-black text-[#ff2d6b]">৳{price}</span>
               <span className="text-white/30 line-through text-xl">৳{Math.round(price * 1.2)}</span>
@@ -99,21 +107,27 @@ const ProductDetails = ({ product }) => {
 
             <div className="h-px bg-white/8" />
 
+            {/* Volume modifier quantitative counter elements */}
             <div className="flex items-center gap-4">
               <span className="text-white/50 text-sm font-medium">Quantity:</span>
               <div className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-3xl px-4 py-2">
                 <button
                   onClick={() => setQuantity(q => Math.max(1, q - 1))}
                   className="text-white/60 hover:text-white text-xl font-bold w-6 text-center transition"
-                >−</button>
+                >
+                  −
+                </button>
                 <span className="text-white font-bold text-lg w-6 text-center">{quantity}</span>
                 <button
                   onClick={() => setQuantity(q => Math.min(stock || 10, q + 1))}
                   className="text-white/60 hover:text-white text-xl font-bold w-6 text-center transition"
-                >+</button>
+                >
+                  +
+                </button>
               </div>
             </div>
 
+            {/* Interactive functional event submission CTA modules */}
             <div className="flex flex-col sm:flex-row gap-3 mt-2">
               <button className="flex-1 bg-[#ff2d6b] text-white py-4 rounded-3xl font-bold text-lg hover:bg-[#e0255e] transition-all duration-300">
                 🛒 Add To Cart
@@ -123,6 +137,7 @@ const ProductDetails = ({ product }) => {
               </button>
             </div>
 
+            {/* Transactional trust assurance markers component blocks */}
             <div className="grid grid-cols-3 gap-3">
               <div className="bg-white/3 border border-white/8 rounded-3xl p-3 text-center">
                 <p className="text-2xl mb-1">🚚</p>
@@ -140,6 +155,7 @@ const ProductDetails = ({ product }) => {
           </div>
         </div>
 
+        {/* Descriptive textual representation information segments */}
         <div className="py-14 max-w-5xl mx-auto">
           <div className="flex items-center gap-4 mb-8">
             <div className="w-1 h-8 bg-[#ff2d6b] rounded-full" />
@@ -171,6 +187,7 @@ const ProductDetails = ({ product }) => {
             </div>
           </div>
         </div>
+
       </div>
     </div>
   );

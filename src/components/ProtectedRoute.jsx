@@ -1,28 +1,26 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { authClient } from "@/lib/auth-client";
 
 const ProtectedRoute = ({ children }) => {
   const router = useRouter();
-  const [checking, setChecking] = useState(true);
+  
+  // Fetch session dynamic properties directly from the authentic client object context
+  const { data: session, isPending } = authClient.useSession();
 
   useEffect(() => {
-    const checkSession = async () => {
-      const session = await authClient.getSession();
-      if (!session?.data?.user) {
-        router.push("/login");
-      } else {
-        setChecking(false);
-      }
-    };
-    checkSession();
-  }, [router]);
+    // Navigate unauthorized sessions systematically toward login portal entrypoint
+    if (!isPending && !session?.user) {
+      router.push("/login");
+    }
+  }, [session, isPending, router]);
 
-  if (checking) {
+  // Render a responsive global loader frame pending standard protocol processing
+  if (isPending) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center bg-[#0f0d3b]">
         <div className="text-center">
           <div className="w-12 h-12 border-4 border-[#ff2d6b] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-white/60">Checking authentication...</p>
@@ -31,7 +29,8 @@ const ProtectedRoute = ({ children }) => {
     );
   }
 
-  return children;
+  // Validate security credentials completely prior to rendering nested client trees
+  return session?.user ? children : null;
 };
 
 export default ProtectedRoute;
