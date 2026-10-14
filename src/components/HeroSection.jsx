@@ -7,16 +7,16 @@ import 'animate.css';
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-[65vh] lg:h-[72vh] bg-[#0c0a2a] overflow-hidden flex items-center py-6 lg:py-0">
+    <section className="relative min-h-[calc(100vh-88px)] lg:h-[calc(100vh-88px)] bg-[#0c0a2a] overflow-hidden flex items-center py-6 lg:py-0">
 
       {/* Background effects */}
-      <div className="absolute top-0 left-0 w-72 h-72 bg-purple-800 opacity-20 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-900 opacity-25 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
+      <div className="absolute top-0 left-0 w-72 h-72 bg-purple-800 opacity-20 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-900 opacity-25 rounded-full blur-3xl translate-x-1/2 translate-y-1/2 pointer-events-none"></div>
 
-      <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-6 w-full grid grid-cols-1 lg:grid-cols-2 gap-4 items-center">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-6 w-full h-full grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-center">
 
         {/* Left Side Content */}
-        <div className="flex flex-col justify-center z-20 animate__animated animate__fadeInLeft">
+        <div className="flex flex-col justify-center z-20 py-4 animate__animated animate__fadeInLeft">
           <p className="text-[#ff2d6b] font-bold uppercase tracking-widest text-[11px] md:text-xs mb-2">
             New Arrival 2025
           </p>
@@ -41,7 +41,7 @@ const HeroSection = () => {
                 HOT SUMMER DEALS
                 <span className="animate__animated animate__tada animate__infinite inline-block">🔥</span>
               </span>
-              <div className="absolute inset-0 z-0 h-full w-full -translate-x-full bg-linear-to-r from-transparent via-white/20 to-transparent transition-transform duration-500 group-hover:translate-x-full"></div>
+              <div className="absolute inset-0 z-0 h-full w-full -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-500 group-hover:translate-x-full"></div>
             </Link>
           </div>
 
@@ -69,27 +69,28 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* Right Side Image */}
-        <div className="relative flex justify-center items-end h-full min-h-[50vh] lg:min-h-0 animate__animated animate__fadeInRight animate__delay-0.5s">
-          <span className="absolute text-[200px] md:text-[320px] font-black text-white/5 select-none leading-none top-1/2 -translate-y-1/2">
+        {/* Right Side Image Showcase */}
+        <div className="relative flex justify-center items-center h-full min-h-[360px] lg:min-h-0 py-4 lg:py-6 animate__animated animate__fadeInRight animate__delay-0.5s">
+          <span className="absolute text-[160px] md:text-[220px] lg:text-[260px] font-black text-white/5 select-none leading-none top-1/2 -translate-y-1/2 pointer-events-none">
             50
           </span>
 
-          <div className="absolute top-8 left-4 lg:left-8 z-30 animate__animated animate__fadeInUp">
-            <div className="relative bg-white/10 backdrop-blur-md border border-white/20 text-white text-center px-6 py-4 rounded-2xl shadow-xl">
-              <p className="text-3xl font-black text-[#ff2d6b]">250+</p>
-              <p className="text-[10px] text-gray-300 uppercase font-semibold tracking-wider">New Product</p>
+          <div className="absolute top-2 sm:top-4 left-2 sm:left-4 lg:left-2 z-30 animate__animated animate__fadeInUp">
+            <div className="relative bg-white/10 backdrop-blur-md border border-white/20 text-white text-center px-4 py-2 sm:px-5 sm:py-3 rounded-2xl shadow-xl">
+              <p className="text-2xl sm:text-3xl font-black text-[#ff2d6b]">250+</p>
+              <p className="text-[9px] sm:text-[10px] text-gray-300 uppercase font-semibold tracking-wider">New Product</p>
             </div>
           </div>
 
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-purple-600 opacity-20 rounded-full blur-[90px]"></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 sm:w-80 sm:h-80 bg-purple-600 opacity-20 rounded-full blur-[80px] pointer-events-none"></div>
 
-          <div className="relative z-10 w-full flex justify-center">
+          {/* Contained Lady Image with Padding & Margin */}
+          <div className="relative z-10 w-full h-full flex justify-center items-center p-3 sm:p-5">
             <Image
               src={HeroImage}
-              alt="Summer Sale"
+              alt="Summer Sale Fashion"
               priority
-              className="relative z-20 w-85.5 md:w-102.5 lg:w-82.5 h-auto object-contain object-bottom drop-shadow-[0_20px_60px_rgba(0,0,0,0.6)] transform hover:scale-105 transition-transform duration-700"
+              className="relative z-20 w-auto h-auto max-h-[360px] sm:max-h-[420px] lg:max-h-[min(480px,calc(100vh-170px))] object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.6)] transform hover:scale-105 transition-transform duration-500"
             />
           </div>
         </div>
