@@ -1,26 +1,54 @@
 "use client";
 
-import { use } from "react";
-import products from "@/data/products.json";
+import { use, useEffect, useState } from "react";
+import staticProducts from "@/data/products.json";
 import ProductDetails from "@/components/ProductDetails";
-import ProtectedRoute from "@/components/ProtectedRoute";
 
-export default function Page({ params }) {
-  // Unwrap the async params wrapper safely in client environment
+export default function ProductDetailPage({ params }) {
   const unwrappedParams = use(params);
   const { id } = unwrappedParams;
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  // Resolve target resource configuration criteria matching execution loop
-  const product = products.find(
-    (item) => item.id === Number(id)
-  );
+  useEffect(() => {
+    async function loadProduct() {
+      try {
+        const res = await fetch(`/api/products/${id}`);
+        if (res.ok) {
+          const data = await res.json();
+          if (data?.product) {
+            setProduct(data.product);
+            setLoading(false);
+            return;
+          }
+        }
+      } catch (err) {
+        console.warn("Falling back to static products:", err);
+      }
+
+      // Fallback to static products
+      const found = staticProducts.find((item) => String(item.id) === String(id));
+      setProduct(found || null);
+      setLoading(false);
+    }
+
+    loadProduct();
+  }, [id]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-[#0f0d3b] flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-12 h-12 border-4 border-pink-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-white/60">Loading product details...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <ProtectedRoute>
-      {/* Target product context presentation layer interface framework */}
-      <div>
-        <ProductDetails product={product} />
-      </div>
-    </ProtectedRoute>
+    <main className="min-h-screen bg-[#0f0d3b]">
+      <ProductDetails product={product} />
+    </main>
   );
 }
