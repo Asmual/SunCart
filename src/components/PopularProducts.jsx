@@ -20,7 +20,9 @@ const PopularProducts = ({ product }) => {
 
   const { id, name, price, image, category, rating, stock = 20 } = product;
 
-  const handleAddToCart = () => {
+  const handleAddToCart = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
     if (typeof window !== "undefined") {
       const currentCart = JSON.parse(localStorage.getItem("suncart_cart") || "[]");
       const idx = currentCart.findIndex((item) => String(item.id) === String(id));
@@ -45,7 +47,9 @@ const PopularProducts = ({ product }) => {
     }
   };
 
-  const handleToggleWishlist = () => {
+  const handleToggleWishlist = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
     if (typeof window !== "undefined") {
       const currentWishlist = JSON.parse(localStorage.getItem("suncart_wishlist") || "[]");
       const exists = currentWishlist.some((item) => String(item.id) === String(id));
@@ -67,70 +71,74 @@ const PopularProducts = ({ product }) => {
   };
 
   return (
-    <div className="group relative bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:border-[#ff2d6b]/50 hover:shadow-[0_0_30px_rgba(255,45,107,0.15)] transition-all duration-300 flex flex-col justify-between">
+    <div className="group relative bg-[#131138]/80 hover:bg-[#181545] border border-white/8 hover:border-[#ff2d6b]/40 rounded-xl overflow-hidden transition-all duration-300 flex flex-col justify-between shadow-md hover:shadow-[0_8px_25px_rgba(255,45,107,0.12)]">
 
       {/* Floating Wishlist Button */}
       <button
         onClick={handleToggleWishlist}
-        className={`absolute top-3 right-3 z-20 w-8 h-8 rounded-full flex items-center justify-center backdrop-blur-md transition-all ${
+        className={`absolute top-2 right-2 z-20 w-7 h-7 rounded-full flex items-center justify-center backdrop-blur-md transition-all ${
           isWishlisted
-            ? "bg-[#ff2d6b] text-white shadow-lg"
-            : "bg-black/40 text-white/70 hover:text-white hover:bg-black/70"
+            ? "bg-[#ff2d6b] text-white shadow-md"
+            : "bg-black/50 text-white/70 hover:text-white hover:bg-black/80"
         }`}
-        title="Save to Wishlist"
+        title={isWishlisted ? "Remove from Wishlist" : "Save to Wishlist"}
       >
-        <FiHeart className={isWishlisted ? "fill-white text-white" : ""} size={15} />
+        <FiHeart className={isWishlisted ? "fill-white text-white" : ""} size={13} />
       </button>
 
-      {/* Product Image */}
-      <Link href={`/products/${id}`} className="h-56 overflow-hidden relative block bg-[#12103d]/40">
+      {/* Edge-to-Edge Image Header with No Excessive Padding */}
+      <Link href={`/products/${id}`} className="relative block w-full aspect-[4/3] bg-[#0c0a2a] overflow-hidden">
         <Image
           src={image}
           alt={name}
           fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          className="object-contain p-4 group-hover:scale-108 transition duration-500"
+          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+          className="object-cover group-hover:scale-105 transition-transform duration-500"
           onError={(e) => {
             console.error(`Error loading image: ${image}`);
           }}
         />
+        {/* Subtle category badge on top-left of image */}
+        <span className="absolute bottom-2 left-2 bg-black/60 backdrop-blur-md text-[#ff4d6d] font-bold text-[9px] uppercase tracking-wider px-2 py-0.5 rounded-md">
+          {category}
+        </span>
       </Link>
 
-      {/* Product Content */}
-      <div className="p-5 flex flex-col justify-between flex-1">
+      {/* Product Content Body */}
+      <div className="p-3 flex flex-col justify-between flex-1 gap-2">
         <div>
-          <div className="flex items-center justify-between gap-2 mb-1">
-            <span className="text-[11px] text-[#ff2d6b] font-bold uppercase tracking-wider">
-              {category}
+          <div className="flex items-center justify-between text-[11px] text-white/50 mb-1">
+            <span className="text-amber-400 font-semibold flex items-center gap-0.5">
+              ★ {rating}
             </span>
-            <span className="text-yellow-400 text-xs font-semibold flex items-center gap-1">
-              ⭐ {rating}
-            </span>
+            <span className="text-[10px] text-emerald-400 font-medium">In Stock</span>
           </div>
 
-          <Link href={`/products/${id}`}>
-            <h2 className="text-white font-bold text-base hover:text-[#ff2d6b] transition line-clamp-1 mb-2">
+          <Link href={`/products/${id}`} className="block">
+            <h2 className="text-white font-semibold text-xs sm:text-sm hover:text-[#ff2d6b] transition line-clamp-1" title={name}>
               {name}
             </h2>
           </Link>
         </div>
 
-        <div className="pt-2">
-          <div className="flex items-baseline gap-2 mb-4">
-            <span className="text-[#ff2d6b] font-black text-xl">৳{price}</span>
-            <span className="text-white/30 text-xs line-through">৳{Math.round(price * 1.25)}</span>
+        <div>
+          {/* Price Line */}
+          <div className="flex items-baseline gap-2 mb-2.5">
+            <span className="text-[#ff2d6b] font-bold text-base">৳{price}</span>
+            <span className="text-white/30 text-[11px] line-through">৳{Math.round(price * 1.25)}</span>
           </div>
 
-          <div className="flex gap-2">
+          {/* Action Buttons Row */}
+          <div className="flex items-center gap-1.5">
             <button
               onClick={handleAddToCart}
-              className="flex-1 flex items-center justify-center gap-1.5 bg-[#ff2d6b] hover:bg-[#e0255e] text-white py-2.5 rounded-xl text-xs font-bold transition shadow-md shadow-[#ff2d6b]/20 hover:-translate-y-0.5"
+              className="flex-1 flex items-center justify-center gap-1 bg-[#ff2d6b] hover:bg-[#e0255e] text-white py-1.5 px-2 rounded-lg text-[11px] font-bold transition shadow-sm hover:shadow-[#ff2d6b]/30 active:scale-95"
             >
-              <FiShoppingCart size={14} /> Add to Cart
+              <FiShoppingCart size={12} /> Add to Cart
             </button>
             <Link
               href={`/products/${id}`}
-              className="px-3.5 border border-white/20 hover:border-white/40 text-white/90 py-2.5 rounded-xl text-xs font-semibold text-center hover:bg-white/5 transition flex items-center"
+              className="px-2.5 py-1.5 border border-white/15 hover:border-white/30 text-white/80 hover:text-white rounded-lg text-[11px] font-medium text-center transition hover:bg-white/5"
             >
               Details
             </Link>

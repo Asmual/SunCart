@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import PopularProducts from "@/components/PopularProducts";
 import staticProducts from "@/data/products.json";
-import { FiSearch, FiFilter, FiSliders, FiRefreshCw } from "react-icons/fi";
+import { FiSearch, FiSliders, FiRefreshCw } from "react-icons/fi";
 
 const categories = ["All", "Accessories", "Shoes", "Bag", "Skincare"];
 
@@ -16,7 +16,6 @@ export default function ProductsPage() {
   const [maxPrice, setMaxPrice] = useState(2000);
   const [inStockOnly, setInStockOnly] = useState(false);
 
-  // Fetch products from API with query params
   useEffect(() => {
     async function fetchCatalog() {
       setLoading(true);
@@ -44,7 +43,6 @@ export default function ProductsPage() {
         console.warn("API products query failed, filtering locally:", err);
       }
 
-      // Local fallback filter
       let filtered = staticProducts.filter((p) => {
         const matchesSearch =
           !search ||
@@ -66,7 +64,7 @@ export default function ProductsPage() {
       setLoading(false);
     }
 
-    const timer = setTimeout(fetchCatalog, 200);
+    const timer = setTimeout(fetchCatalog, 150);
     return () => clearTimeout(timer);
   }, [search, selectedCategory, sortOption, maxPrice, inStockOnly]);
 
@@ -79,88 +77,97 @@ export default function ProductsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0f0d3b] text-white py-12 px-4 md:px-8">
-      <div className="max-w-6xl mx-auto space-y-8">
+    <div className="min-h-screen bg-[#0b0a28] text-white py-6 px-4 md:px-6">
+      <div className="max-w-6xl mx-auto space-y-4">
 
-        {/* Header Title Section */}
-        <div className="text-center space-y-3">
-          <p className="text-[#ff2d6b] font-bold uppercase tracking-widest text-xs">
-            Summer Collection 2025
-          </p>
-          <h1 className="text-4xl md:text-5xl font-black">
-            Explore All <span className="text-[#ff2d6b]">Summer</span> Gear
-          </h1>
-          <p className="text-white/50 max-w-lg mx-auto text-sm">
-            Curated seasonal essentials designed for beat-the-heat comfort, outdoor protection and tropical lifestyle.
-          </p>
+        {/* Compact Title Bar (Reduced Margin & Padding) */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-white/5 pb-3">
+          <div>
+            <h1 className="text-xl md:text-2xl font-black text-white">
+              Summer <span className="text-[#ff2d6b]">Collection</span>
+            </h1>
+            <p className="text-white/40 text-xs">
+              Showing <b className="text-white">{products.length}</b> seasonal essentials
+            </p>
+          </div>
+
+          {(search || selectedCategory !== "All" || sortOption !== "featured" || maxPrice < 2000 || inStockOnly) && (
+            <button
+              onClick={handleResetFilters}
+              className="self-start sm:self-auto flex items-center gap-1.5 px-3 py-1.5 bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/20 rounded-lg text-xs font-semibold transition"
+            >
+              <FiRefreshCw size={11} /> Reset Filters
+            </button>
+          )}
         </div>
 
-        {/* Filter and Search Control Bar */}
-        <div className="bg-white/3 border border-white/10 rounded-3xl p-6 backdrop-blur-md space-y-6">
+        {/* Streamlined Compact Search & Filter Toolbar */}
+        <div className="bg-white/4 border border-white/8 rounded-2xl p-3 md:p-3.5 backdrop-blur-md space-y-3">
 
-          {/* Row 1: Search & Sorting */}
-          <div className="flex flex-col md:flex-row items-center gap-4 justify-between">
+          {/* Row 1: Search Bar & Sort Dropdown */}
+          <div className="flex flex-col sm:flex-row items-center gap-3 justify-between">
             {/* Search Input */}
-            <div className="relative w-full md:w-96">
-              <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-white/40" />
+            <div className="relative w-full sm:w-80">
+              <FiSearch className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/40 text-xs" />
               <input
                 type="text"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                placeholder="Search sunglasses, caps, sandals..."
-                className="w-full pl-11 pr-4 py-3 bg-white/5 border border-white/10 rounded-2xl text-sm text-white placeholder-white/30 outline-none focus:border-[#ff2d6b] transition"
+                placeholder="Quick search sunglasses, caps, shoes..."
+                className="w-full pl-9 pr-8 py-2 bg-white/5 border border-white/10 rounded-xl text-xs text-white placeholder-white/30 outline-none focus:border-[#ff2d6b] transition"
               />
               {search && (
                 <button
                   onClick={() => setSearch("")}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-white/40 hover:text-white text-xs"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-white/40 hover:text-white text-xs"
                 >
                   ✕
                 </button>
               )}
             </div>
 
-            {/* Sort & Quick Controls */}
-            <div className="flex items-center gap-3 w-full md:w-auto justify-end flex-wrap">
-              <div className="flex items-center gap-2 bg-white/5 border border-white/10 px-3 py-2 rounded-2xl text-xs">
-                <FiSliders className="text-pink-400" />
-                <span className="text-white/60">Sort:</span>
+            {/* Quick Sort Dropdown */}
+            <div className="flex items-center gap-2 w-full sm:w-auto justify-end text-xs">
+              <div className="flex items-center gap-1.5 bg-white/5 border border-white/10 px-2.5 py-1.5 rounded-xl">
+                <FiSliders size={12} className="text-pink-400" />
+                <span className="text-white/50 text-[11px]">Sort:</span>
                 <select
                   value={sortOption}
                   onChange={(e) => setSortOption(e.target.value)}
-                  className="bg-transparent text-white outline-none cursor-pointer font-medium"
+                  className="bg-transparent text-white text-xs outline-none cursor-pointer font-medium"
                 >
                   <option value="featured" className="bg-[#0f0d3b]">Featured</option>
                   <option value="price-low" className="bg-[#0f0d3b]">Price: Low to High</option>
                   <option value="price-high" className="bg-[#0f0d3b]">Price: High to Low</option>
-                  <option value="rating" className="bg-[#0f0d3b]">Highest Rated</option>
+                  <option value="rating" className="bg-[#0f0d3b]">Top Rated</option>
                 </select>
               </div>
 
-              {(search || selectedCategory !== "All" || sortOption !== "featured" || maxPrice < 2000 || inStockOnly) && (
-                <button
-                  onClick={handleResetFilters}
-                  className="flex items-center gap-1.5 px-3 py-2 bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/20 rounded-2xl text-xs font-semibold transition"
-                  title="Reset all filters"
-                >
-                  <FiRefreshCw size={12} /> Reset
-                </button>
-              )}
+              {/* In-Stock Checkbox */}
+              <label className="flex items-center gap-1.5 text-[11px] text-white/70 cursor-pointer select-none bg-white/5 border border-white/10 px-2.5 py-1.5 rounded-xl">
+                <input
+                  type="checkbox"
+                  checked={inStockOnly}
+                  onChange={(e) => setInStockOnly(e.target.checked)}
+                  className="rounded accent-[#ff2d6b] w-3 h-3"
+                />
+                In Stock
+              </label>
             </div>
           </div>
 
-          {/* Row 2: Category Tabs & Price Slider */}
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-6 pt-2 border-t border-white/5">
+          {/* Row 2: Category Tabs & Compact Price Slider */}
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2 border-t border-white/5">
             {/* Category Pills */}
-            <div className="flex items-center gap-2 overflow-x-auto w-full pb-1 scrollbar-none">
+            <div className="flex items-center gap-1.5 overflow-x-auto w-full pb-0.5 scrollbar-none">
               {categories.map((cat) => (
                 <button
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
-                  className={`px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all ${
+                  className={`px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap transition-all ${
                     selectedCategory === cat
-                      ? "bg-[#ff2d6b] text-white shadow-lg shadow-[#ff2d6b]/30"
-                      : "bg-white/5 text-white/70 hover:bg-white/10 hover:text-white"
+                      ? "bg-[#ff2d6b] text-white shadow-sm"
+                      : "bg-white/5 text-white/60 hover:bg-white/10 hover:text-white"
                   }`}
                 >
                   {cat}
@@ -168,68 +175,46 @@ export default function ProductsPage() {
               ))}
             </div>
 
-            {/* Price Filter & Stock Toggle */}
-            <div className="flex items-center gap-6 w-full lg:w-auto shrink-0 justify-between lg:justify-end">
-              <div className="flex items-center gap-3">
-                <span className="text-xs text-white/60">Max Price:</span>
-                <input
-                  type="range"
-                  min="300"
-                  max="2000"
-                  step="50"
-                  value={maxPrice}
-                  onChange={(e) => setMaxPrice(Number(e.target.value))}
-                  className="w-28 accent-[#ff2d6b] cursor-pointer"
-                />
-                <span className="text-xs font-bold text-pink-400 w-12 text-right">৳{maxPrice}</span>
-              </div>
-
-              <label className="flex items-center gap-2 text-xs text-white/70 cursor-pointer select-none">
-                <input
-                  type="checkbox"
-                  checked={inStockOnly}
-                  onChange={(e) => setInStockOnly(e.target.checked)}
-                  className="rounded accent-[#ff2d6b]"
-                />
-                In Stock Only
-              </label>
+            {/* Compact Price Slider */}
+            <div className="flex items-center gap-2 w-full sm:w-auto shrink-0 justify-end text-[11px]">
+              <span className="text-white/50">Max:</span>
+              <input
+                type="range"
+                min="300"
+                max="2000"
+                step="50"
+                value={maxPrice}
+                onChange={(e) => setMaxPrice(Number(e.target.value))}
+                className="w-24 accent-[#ff2d6b] cursor-pointer"
+              />
+              <span className="font-bold text-pink-400 w-11 text-right">৳{maxPrice}</span>
             </div>
           </div>
 
         </div>
 
-        {/* Results Counter */}
-        <div className="flex items-center justify-between text-xs text-white/50 px-2">
-          <span>
-            Showing <b className="text-white">{products.length}</b> product(s)
-          </span>
-          {selectedCategory !== "All" && (
-            <span className="text-pink-400 font-medium">Category: {selectedCategory}</span>
-          )}
-        </div>
-
-        {/* Products Grid */}
+        {/* 4-Column Product Cards Grid (Above-the-fold Optimized) */}
         {loading ? (
-          <div className="py-24 flex flex-col items-center justify-center space-y-4">
-            <div className="w-12 h-12 border-4 border-[#ff2d6b] border-t-transparent rounded-full animate-spin"></div>
-            <p className="text-white/50 text-sm">Loading summer collection...</p>
+          <div className="py-16 flex flex-col items-center justify-center space-y-3">
+            <div className="w-8 h-8 border-3 border-[#ff2d6b] border-t-transparent rounded-full animate-spin"></div>
+            <p className="text-white/40 text-xs">Loading items...</p>
           </div>
         ) : products.length === 0 ? (
-          <div className="bg-white/3 border border-white/10 rounded-3xl p-16 text-center space-y-4">
-            <p className="text-6xl">🔍</p>
-            <h3 className="text-2xl font-bold text-white">No products matched your search</h3>
-            <p className="text-white/40 text-sm max-w-md mx-auto">
-              Try adjusting your search terms, changing categories, or clearing active price filters.
+          <div className="bg-white/3 border border-white/8 rounded-2xl p-10 text-center space-y-3">
+            <p className="text-4xl">🔍</p>
+            <h3 className="text-lg font-bold text-white">No products found</h3>
+            <p className="text-white/40 text-xs max-w-sm mx-auto">
+              No summer gear matched your active filters. Try clearing or expanding your search.
             </p>
             <button
               onClick={handleResetFilters}
-              className="px-6 py-2.5 bg-[#ff2d6b] text-white rounded-full text-xs font-bold hover:bg-[#e0255e] transition"
+              className="px-5 py-2 bg-[#ff2d6b] text-white rounded-full text-xs font-bold hover:bg-[#e0255e] transition"
             >
-              Reset All Filters
+              Reset Filters
             </button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
             {products.map((product) => (
               <PopularProducts key={product.id} product={product} />
             ))}
