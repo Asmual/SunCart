@@ -19,6 +19,11 @@ const PopularProducts = ({ product }) => {
   if (!product) return null;
 
   const { id, name, price, image, category, rating, stock = 20 } = product;
+  const [imgSrc, setImgSrc] = useState(image);
+
+  useEffect(() => {
+    setImgSrc(image);
+  }, [image]);
 
   const handleAddToCart = (e) => {
     e.preventDefault();
@@ -89,13 +94,13 @@ const PopularProducts = ({ product }) => {
       {/* Edge-to-Edge Image Header with No Excessive Padding */}
       <Link href={`/products/${id}`} className="relative block w-full aspect-[4/3] bg-[#0c0a2a] overflow-hidden">
         <Image
-          src={image}
+          src={imgSrc || "/images/bottle.jpg"}
           alt={name}
           fill
           sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
           className="object-cover group-hover:scale-105 transition-transform duration-500"
-          onError={(e) => {
-            console.error(`Error loading image: ${image}`);
+          onError={() => {
+            setImgSrc("/images/bottle.jpg");
           }}
         />
         {/* Subtle category badge on top-left of image */}
