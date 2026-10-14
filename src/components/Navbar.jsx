@@ -6,9 +6,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
-// Import authClient instance directly
 import { authClient } from "@/lib/auth-client";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
+import { useCart } from "@/context/CartContext";
+import { useWishlist } from "@/context/WishlistContext";
+import { FiShoppingCart, FiHeart, FiUser, FiLogOut, FiPackage, FiGrid } from "react-icons/fi";
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -16,7 +18,10 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
-  
+
+  const { totalItems, setIsCartOpen } = useCart();
+  const { totalWishlist } = useWishlist();
+
   // Local state to safely manage the authenticated user details
   const [user, setUser] = useState(null);
 
@@ -59,8 +64,8 @@ const Navbar = () => {
       toast.success("Logout successful!");
       setTimeout(() => {
         router.push("/");
-      }, 1000);
-    } catch (error) {
+      }, 500);
+    } catch {
       toast.error("Something went wrong during logout.");
     }
   };
@@ -68,12 +73,14 @@ const Navbar = () => {
   const navLinks = [
     { href: "/", label: "Home" },
     { href: "/products", label: "Products" },
-    { href: user ? "/my-profile" : "/login", label: "My Profile" },
+    { href: "/cart", label: "Cart" },
+    { href: "/track-order", label: "Track Order" },
   ];
 
-  // Profile Avatar Sub-Component
-  const ProfileAvatar = ({ size = "w-10 h-10", textSize = "text-lg" }) => (
-    <div className={`${size} rounded-full border-2 border-pink-500 overflow-hidden shrink-0 cursor-pointer hover:scale-105 transition-all`}>
+  const ProfileAvatar = ({ size = "w-9 h-9", textSize = "text-sm" }) => (
+    <div
+      className={`${size} rounded-full border-2 border-pink-500 overflow-hidden shrink-0 cursor-pointer hover:scale-105 transition-all`}
+    >
       {user?.image ? (
         <img
           src={user.image}
@@ -92,188 +99,229 @@ const Navbar = () => {
   );
 
   return (
-    <nav className="w-full bg-[#0b0b30] border-b border-white/5 sticky top-0 z-50">
-      <Toaster position="top-center" />
-      <div className="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between gap-4">
+    <header className="sticky top-0 z-40 w-full shadow-lg">
+      {/* Top Banner */}
+      <div className="bg-gradient-to-r from-pink-600 via-rose-600 to-amber-500 text-white text-[11px] font-semibold py-1.5 px-4 text-center tracking-wide">
+        ☀️ SUMMER MEGA SALE: UP TO 50% OFF! Free Nationwide Delivery on orders over ৳1,000 🔥
+      </div>
 
-        {/* Brand Logo and Name Section */}
-        <Link href="/" className="flex items-center gap-2.5 shrink-0">
-          <Image
-            src="/images/SunCart-Logo.png"
-            alt="SunCart Logo"
-            width={32}
-            height={32}
-            className="object-contain"
-          />
-          <span className="font-extrabold text-xl text-white tracking-tight">
-            Sun<span className="text-pink-500">Cart</span>
-          </span>
-        </Link>
+      <nav className="w-full bg-[#0b0b30]/95 backdrop-blur-md border-b border-white/5">
+        <div className="max-w-6xl mx-auto px-4 md:px-6 py-3 flex items-center justify-between gap-4">
 
-        {/* Desktop Navigation Links */}
-        <div className="hidden md:flex items-center gap-7">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`text-sm font-semibold transition-colors ${pathname === link.href ? "text-pink-500" : "text-white/60 hover:text-white"
+          {/* Brand Logo */}
+          <Link href="/" className="flex items-center gap-2.5 shrink-0">
+            <Image
+              src="/images/SunCart-Logo.png"
+              alt="SunCart Logo"
+              width={34}
+              height={34}
+              className="object-contain"
+            />
+            <span className="font-black text-2xl text-white tracking-tight">
+              Sun<span className="text-[#ff2d6b]">Cart</span>
+            </span>
+          </Link>
+
+          {/* Desktop Nav Links */}
+          <div className="hidden md:flex items-center gap-6">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`text-sm font-semibold transition-colors ${
+                  pathname === link.href ? "text-[#ff2d6b]" : "text-white/70 hover:text-white"
                 }`}
-            >
-              {link.label}
-            </Link>
-          ))}
-        </div>
-
-        {/* Desktop Auth and Profile Section */}
-        <div className="hidden md:flex items-center gap-3">
-          {user ? (
-            <div className="relative flex items-center gap-3" ref={dropdownRef}>
-              <span className="text-white/80 text-sm font-medium">
-                Hi, {user.name?.split(" ")[0]}
-              </span>
-              <button 
-                onClick={() => setDropdownOpen(!dropdownOpen)} 
-                className="focus:outline-none"
               >
-                <ProfileAvatar />
-              </button>
+                {link.label}
+              </Link>
+            ))}
+          </div>
 
-              {/* User Dropdown Menu */}
-              {dropdownOpen && (
-                <div className="absolute right-0 top-full mt-2 w-48 bg-[#121242] border border-white/10 rounded-xl shadow-2xl py-2 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
-                  <Link
-                    href="/my-profile"
-                    onClick={() => setDropdownOpen(false)}
-                    className="flex items-center gap-2 px-4 py-2.5 text-sm text-white/80 hover:text-white hover:bg-white/5 transition-all"
-                  >
-                    👤 View Profile
-                  </Link>
-                  <div className="h-px bg-white/5 my-1" />
+          {/* Right Action Icons (Wishlist, Cart, Profile) */}
+          <div className="flex items-center gap-3">
+            {/* Wishlist Link */}
+            <Link
+              href="/wishlist"
+              className="relative p-2 text-white/70 hover:text-white transition rounded-full hover:bg-white/5"
+              title="View Wishlist"
+            >
+              <FiHeart size={20} />
+              {totalWishlist > 0 && (
+                <span className="absolute -top-1 -right-1 bg-pink-500 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center animate-pulse">
+                  {totalWishlist}
+                </span>
+              )}
+            </Link>
+
+            {/* Cart Trigger */}
+            <button
+              onClick={() => setIsCartOpen(true)}
+              className="relative p-2 text-white/70 hover:text-white transition rounded-full hover:bg-white/5"
+              title="Open Cart"
+            >
+              <FiShoppingCart size={20} />
+              {totalItems > 0 && (
+                <span className="absolute -top-1 -right-1 bg-[#ff2d6b] text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center shadow-md shadow-[#ff2d6b]/50">
+                  {totalItems}
+                </span>
+              )}
+            </button>
+
+            {/* Auth / Profile Area */}
+            <div className="hidden md:flex items-center ml-2">
+              {user ? (
+                <div className="relative flex items-center gap-2.5" ref={dropdownRef}>
                   <button
-                    onClick={handleLogout}
-                    className="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-pink-500 hover:text-pink-400 hover:bg-pink-500/10 transition-all text-left font-medium"
+                    onClick={() => setDropdownOpen(!dropdownOpen)}
+                    className="flex items-center gap-2 focus:outline-none p-1 rounded-full hover:bg-white/5 transition"
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth={2}
-                      stroke="currentColor"
-                      className="w-4 h-4"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M12 9l-3 3m0 0 3 3m-3-3h12.75"
-                      />
-                    </svg>
-                    Logout
+                    <ProfileAvatar />
                   </button>
+
+                  {/* Dropdown Menu */}
+                  {dropdownOpen && (
+                    <div className="absolute right-0 top-full mt-2 w-52 bg-[#121242] border border-white/10 rounded-2xl shadow-2xl py-2 z-50">
+                      <div className="px-4 py-2 border-b border-white/5">
+                        <p className="text-xs text-white/40">Signed in as</p>
+                        <p className="text-sm font-bold text-white truncate">{user.name}</p>
+                      </div>
+
+                      <Link
+                        href="/my-profile"
+                        onClick={() => setDropdownOpen(false)}
+                        className="flex items-center gap-2.5 px-4 py-2.5 text-xs text-white/80 hover:text-white hover:bg-white/5 transition"
+                      >
+                        <FiUser className="text-pink-400" /> My Account
+                      </Link>
+
+                      <Link
+                        href="/wishlist"
+                        onClick={() => setDropdownOpen(false)}
+                        className="flex items-center gap-2.5 px-4 py-2.5 text-xs text-white/80 hover:text-white hover:bg-white/5 transition"
+                      >
+                        <FiHeart className="text-pink-400" /> Wishlist ({totalWishlist})
+                      </Link>
+
+                      <Link
+                        href="/admin"
+                        onClick={() => setDropdownOpen(false)}
+                        className="flex items-center gap-2.5 px-4 py-2.5 text-xs text-amber-400 hover:text-amber-300 hover:bg-white/5 transition font-medium"
+                      >
+                        <FiGrid /> Admin Dashboard
+                      </Link>
+
+                      <div className="h-px bg-white/5 my-1" />
+
+                      <button
+                        onClick={handleLogout}
+                        className="w-full flex items-center gap-2.5 px-4 py-2 text-xs text-pink-400 hover:text-pink-300 hover:bg-pink-500/10 transition text-left font-medium"
+                      >
+                        <FiLogOut /> Logout
+                      </button>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <div className="flex items-center gap-2">
+                  <Link
+                    href="/login"
+                    className="px-3.5 py-1.5 rounded-xl text-xs font-semibold text-white/80 hover:text-white border border-white/15 hover:border-white/30 transition"
+                  >
+                    Login
+                  </Link>
+                  <Link
+                    href="/register"
+                    className="px-3.5 py-1.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-500 hover:to-rose-500 transition shadow-md shadow-pink-600/20"
+                  >
+                    Register
+                  </Link>
                 </div>
               )}
             </div>
-          ) : (
-            <div className="flex gap-2">
-              <Link
-                href="/login"
-                className="px-4 py-2 rounded-lg text-sm font-medium border border-white/20 text-white hover:border-pink-500 hover:text-pink-500 transition-all"
-              >
-                Login
-              </Link>
-              <Link
-                href="/register"
-                className="px-4 py-2 rounded-lg text-sm font-medium bg-linear-to-r from-[#ff4d6d] to-[#ff2952] text-white"
-              >
-                Register
-              </Link>
-            </div>
-          )}
-        </div>
 
-        {/* Mobile Menu Toggle Button */}
-        <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          className="md:hidden p-2 text-white text-2xl focus:outline-none"
-        >
-          {menuOpen ? "✕" : "☰"}
-        </button>
-      </div>
-
-      {/* Mobile Sidebar Navigation */}
-      {menuOpen && (
-        <div className="md:hidden bg-[#0d0d35] border-t border-white/5 px-6 py-4 flex flex-col gap-4">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setMenuOpen(false)}
-              className={`text-sm font-semibold transition-colors ${pathname === link.href ? "text-pink-500" : "text-white/60"
-                }`}
+            {/* Mobile Hamburger Button */}
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="md:hidden p-2 text-white/80 hover:text-white focus:outline-none"
             >
-              {link.label}
-            </Link>
-          ))}
-
-          {/* Mobile User Profile Section */}
-          <div className="pt-2 border-t border-white/10">
-            {user ? (
-              <div className="flex flex-col gap-3">
-                <div className="flex items-center gap-3 py-1">
-                  <ProfileAvatar size="w-9 h-9" textSize="text-sm" />
-                  <span className="text-white text-sm font-medium flex-1">
-                    Hi, {user.name}
-                  </span>
-                </div>
-                <Link
-                  href="/my-profile"
-                  onClick={() => setMenuOpen(false)}
-                  className="w-full text-center px-4 py-2 rounded-lg text-sm font-medium border border-white/10 text-white/80 bg-white/5"
-                >
-                  👤 View Profile
-                </Link>
-                <button
-                  onClick={handleLogout}
-                  className="w-full flex items-center justify-center gap-2 text-pink-500 text-sm font-semibold border border-pink-500/30 py-2 px-3 rounded-lg hover:bg-pink-500/10 transition-all"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={2}
-                    stroke="currentColor"
-                    className="w-4 h-4"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M12 9l-3 3m0 0 3 3m-3-3h12.75"
-                    />
-                  </svg>
-                  Logout
-                </button>
-              </div>
-            ) : (
-              <div className="flex flex-col gap-2">
-                <Link
-                  href="/login"
-                  onClick={() => setMenuOpen(false)}
-                  className="w-full text-center px-4 py-2 rounded-lg text-sm font-medium border border-white/20 text-white"
-                >
-                  Login
-                </Link>
-                <Link
-                  href="/register"
-                  onClick={() => setMenuOpen(false)}
-                  className="w-full text-center px-4 py-2 rounded-lg text-sm font-medium bg-linear-to-r from-[#ff4d6d] to-[#ff2952] text-white"
-                >
-                  Register
-                </Link>
-              </div>
-            )}
+              {menuOpen ? "✕" : "☰"}
+            </button>
           </div>
         </div>
-      )}
-    </nav>
+
+        {/* Mobile Navigation Drawer */}
+        {menuOpen && (
+          <div className="md:hidden bg-[#0d0d35] border-t border-white/5 px-6 py-4 flex flex-col gap-3">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setMenuOpen(false)}
+                className={`text-sm font-semibold py-1.5 ${
+                  pathname === link.href ? "text-[#ff2d6b]" : "text-white/70"
+                }`}
+              >
+                {link.label}
+              </Link>
+            ))}
+
+            <Link
+              href="/admin"
+              onClick={() => setMenuOpen(false)}
+              className="text-sm font-semibold text-amber-400 py-1.5 flex items-center gap-2"
+            >
+              <FiGrid /> Admin Panel
+            </Link>
+
+            <div className="pt-3 border-t border-white/10">
+              {user ? (
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3">
+                    <ProfileAvatar />
+                    <div>
+                      <p className="text-sm font-bold text-white">{user.name}</p>
+                      <p className="text-xs text-white/40 truncate">{user.email}</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-2">
+                    <Link
+                      href="/my-profile"
+                      onClick={() => setMenuOpen(false)}
+                      className="flex-1 py-2 text-center text-xs font-semibold bg-white/5 border border-white/10 rounded-xl"
+                    >
+                      Profile
+                    </Link>
+                    <button
+                      onClick={handleLogout}
+                      className="flex-1 py-2 text-center text-xs font-semibold text-pink-400 border border-pink-500/30 rounded-xl hover:bg-pink-500/10"
+                    >
+                      Logout
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <div className="flex gap-2">
+                  <Link
+                    href="/login"
+                    onClick={() => setMenuOpen(false)}
+                    className="flex-1 text-center py-2 rounded-xl text-xs font-semibold border border-white/20"
+                  >
+                    Login
+                  </Link>
+                  <Link
+                    href="/register"
+                    onClick={() => setMenuOpen(false)}
+                    className="flex-1 text-center py-2 rounded-xl text-xs font-bold bg-[#ff2d6b] text-white"
+                  >
+                    Register
+                  </Link>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+      </nav>
+    </header>
   );
 };
 
