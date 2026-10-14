@@ -18,7 +18,7 @@ const SummerTips = () => {
           <h2 className="text-white text-4xl font-black">
             Quick <span className="text-[#ff2d6b]">Care</span> Tips
           </h2>
-          <div className="w-15 h-1 bg-[#ff2d6b] mx-auto mt-4 rounded-full ml-139" ></div>
+          <div className="w-16 h-1 bg-[#ff2d6b] mx-auto mt-4 rounded-full"></div>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
