@@ -5,7 +5,7 @@ import PopularProducts from "@/components/PopularProducts";
 import staticProducts from "@/data/products.json";
 import { FiSearch, FiSliders, FiRefreshCw } from "react-icons/fi";
 
-const categories = ["All", "Accessories", "Shoes", "Bag", "Skincare"];
+const categories = ["All", "Accessories", "Shoes", "Bag", "Skincare", "Beachwear"];
 
 export default function ProductsPage() {
   const [products, setProducts] = useState(staticProducts);

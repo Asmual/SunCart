@@ -2,32 +2,7 @@ import { NextResponse } from "next/server";
 import clientPromise from "@/lib/mongodb";
 import staticProducts from "@/data/products.json";
 
-// Initial seed products with extended summer catalog
-const defaultSeedProducts = [
-  ...staticProducts,
-  {
-    id: 7,
-    name: "Sunscreen SPF 50+ Lotion",
-    category: "Skincare",
-    price: 850,
-    rating: 4.8,
-    stock: 50,
-    image: "/images/bottle.jpg",
-    brand: "SunGuard",
-    description: "Maximum broad spectrum UV protection water-resistant formula tailored for intense tropical heat.",
-  },
-  {
-    id: 8,
-    name: "Polarized Aviator Shades",
-    category: "Accessories",
-    price: 1150,
-    rating: 4.9,
-    stock: 25,
-    image: "/images/sunglasses.jpg",
-    brand: "RayOptics",
-    description: "Anti-glare UV400 lenses with ultra-light metallic frame for crisp summer vision.",
-  },
-];
+const defaultSeedProducts = staticProducts;
 
 export async function GET(request) {
   try {
@@ -45,10 +20,12 @@ export async function GET(request) {
       const db = client.db("suncart");
       const collection = db.collection("products");
 
-      // Check if products exist in DB, if not auto-seed
+      // Auto-sync missing products to DB
       const count = await collection.countDocuments();
-      if (count === 0) {
-        await collection.insertMany(defaultSeedProducts);
+      if (count < defaultSeedProducts.length) {
+        for (const p of defaultSeedProducts) {
+          await collection.updateOne({ id: p.id }, { $set: p }, { upsert: true });
+        }
       }
 
       // Build MongoDB filter query
@@ -58,6 +35,7 @@ export async function GET(request) {
           { name: { $regex: search, $options: "i" } },
           { category: { $regex: search, $options: "i" } },
           { description: { $regex: search, $options: "i" } },
+          { brand: { $regex: search, $options: "i" } },
         ];
       }
 
@@ -87,7 +65,8 @@ export async function GET(request) {
         const matchesSearch =
           !search ||
           p.name.toLowerCase().includes(search.toLowerCase()) ||
-          p.category.toLowerCase().includes(search.toLowerCase());
+          p.category.toLowerCase().includes(search.toLowerCase()) ||
+          (p.brand && p.brand.toLowerCase().includes(search.toLowerCase()));
         const matchesCategory =
           !category || category === "All" || p.category.toLowerCase() === category.toLowerCase();
         const matchesMinPrice = !minPrice || p.price >= Number(minPrice);
