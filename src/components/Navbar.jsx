@@ -98,6 +98,9 @@ const Navbar = () => {
     </div>
   );
 
+  const isAuthPage = pathname === "/login" || pathname === "/register";
+  if (isAuthPage) return null;
+
   return (
     <header className="sticky top-0 z-40 w-full shadow-lg">
       {/* Top Banner */}

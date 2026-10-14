@@ -117,6 +117,19 @@ export default function AuthCard({ initialMode = "login" }) {
       {/* Main Glassmorphic Card Container */}
       <div className="relative bg-white/[0.04] backdrop-blur-2xl border border-white/15 rounded-3xl p-6 sm:p-8 shadow-[0_8px_32px_0_rgba(0,0,0,0.45)] text-white">
 
+        {/* Return to Store Bar */}
+        <div className="flex items-center justify-between mb-5">
+          <Link
+            href="/"
+            className="text-[11px] text-white/50 hover:text-white flex items-center gap-1 transition"
+          >
+            ← Return to Store
+          </Link>
+          <span className="text-[10px] text-pink-400 font-bold bg-pink-500/10 px-2 py-0.5 rounded-full border border-pink-500/20">
+            🔒 Secure Access
+          </span>
+        </div>
+
         {/* Brand Header */}
         <div className="text-center mb-6">
           <Link href="/" className="inline-block">

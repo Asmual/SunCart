@@ -6,6 +6,8 @@
     "price": 750,
     "rating": 4.6,
     "stock": 40,
+    "brand": "SunOptics",
+    "description": "Essential polarized UV400 sunglasses with durable lightweight frame.",
     "image": "/images/sunglasses.jpg"
   },
   {
@@ -15,9 +17,10 @@
     "price": 350,
     "rating": 4.4,
     "stock": 60,
+    "brand": "BeachVibe",
+    "description": "Breathable 100% cotton summer cap with adjustable strap and curved visor.",
     "image": "/images/cap.jpg"
   },
- 
   {
     "id": 3,
     "name": "Insulated Water Bottle",
@@ -25,19 +28,20 @@
     "price": 420,
     "rating": 4.7,
     "stock": 70,
+    "brand": "HydroCold",
+    "description": "Vacuum-insulated stainless steel flask keeps water ice-cold for 24 hours.",
     "image": "/images/bottle.jpg"
-
-    
   },
-   {
+  {
     "id": 4,
     "name": "Comfort Summer Sandals",
     "category": "Shoes",
     "price": 1400,
     "rating": 4.5,
     "stock": 35,
+    "brand": "StepAir",
+    "description": "Ergonomic arch-support strap sandals designed for beach walks and everyday wear.",
     "image": "/images/sandal.jpg"
-
   },
   {
     "id": 5,
@@ -46,6 +50,8 @@
     "price": 550,
     "rating": 4.3,
     "stock": 45,
+    "brand": "SunGuard",
+    "description": "Windproof black-coating umbrella offering 99% UV block and heat insulation.",
     "image": "/images/umbrella.jpg"
   },
   {
@@ -55,6 +61,228 @@
     "price": 1200,
     "rating": 4.5,
     "stock": 30,
+    "brand": "Wanderer",
+    "description": "Spacious water-resistant canvas tote bag with inner zipped organizer compartments.",
     "image": "/images/travel-bag.jpg"
+  },
+  {
+    "id": 7,
+    "name": "UV Wide-Brim Sun Hat",
+    "category": "Accessories",
+    "price": 620,
+    "rating": 4.8,
+    "stock": 42,
+    "brand": "Sombrero",
+    "description": "UPF 50+ wide floppy woven straw hat for full face and neck shade at the beach.",
+    "image": "https://images.unsplash.com/photo-1572307480813-ceb0e59d8325?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    "id": 8,
+    "name": "Eco Bamboo Sunglasses",
+    "category": "Accessories",
+    "price": 950,
+    "rating": 4.9,
+    "stock": 25,
+    "brand": "EcoShade",
+    "description": "Handcrafted bamboo wooden arms with high-definition anti-glare polarized lenses.",
+    "image": "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    "id": 9,
+    "name": "Waterproof Adventure Dry Bag",
+    "category": "Bag",
+    "price": 1100,
+    "rating": 4.7,
+    "stock": 38,
+    "brand": "SeaLock",
+    "description": "Heavy-duty 15L roll-top dry bag keeps your phone, clothes and electronics 100% dry.",
+    "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    "id": 10,
+    "name": "Tropical Floral Linen Shirt",
+    "category": "Beachwear",
+    "price": 1250,
+    "rating": 4.8,
+    "stock": 28,
+    "brand": "IslandWave",
+    "description": "Lightweight breathable pure linen floral button-down shirt for vacation vibes.",
+    "image": "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    "id": 11,
+    "name": "SPF 50+ Mineral Sunscreen",
+    "category": "Skincare",
+    "price": 890,
+    "rating": 4.9,
+    "stock": 65,
+    "brand": "DermaSun",
+    "description": "Non-greasy broad spectrum zinc oxide sun lotion that leaves no white cast.",
+    "image": "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    "id": 12,
+    "name": "Casual Beach Flip-Flops",
+    "category": "Shoes",
+    "price": 450,
+    "rating": 4.4,
+    "stock": 55,
+    "brand": "Bata Coast",
+    "description": "Soft cushioned rubber sole flip flops with non-slip textured footbed.",
+    "image": "https://images.unsplash.com/photo-1603487742131-4160ec999306?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    "id": 13,
+    "name": "Microfiber Quick-Dry Beach Towel",
+    "category": "Accessories",
+    "price": 750,
+    "rating": 4.6,
+    "stock": 35,
+    "brand": "QuickDry",
+    "description": "Sand-free compact travel towel dries 3x faster than standard cotton bath towels.",
+    "image": "https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    "id": 14,
+    "name": "Sport Aviator Sunglasses",
+    "category": "Accessories",
+    "price": 1150,
+    "rating": 4.7,
+    "stock": 20,
+    "brand": "Apex Optics",
+    "description": "Military-grade metallic frame aviator sunglasses with gradient mirrored UV400 lenses.",
+    "image": "https://images.unsplash.com/photo-1508296695146-257a814070b4?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    "id": 15,
+    "name": "Breathable Canvas Slip-on Shoes",
+    "category": "Shoes",
+    "price": 1650,
+    "rating": 4.7,
+    "stock": 24,
+    "brand": "CoastWalk",
+    "description": "Ultra-lightweight mesh canvas loafers for effortless walking in the summer heat.",
+    "image": "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    "id": 16,
+    "name": "Hydrating Rosewater Face Mist",
+    "category": "Skincare",
+    "price": 520,
+    "rating": 4.8,
+    "stock": 48,
+    "brand": "PureGlow",
+    "description": "Instant soothing facial hydration spray infused with organic aloe and rose extracts.",
+    "image": "https://images.unsplash.com/photo-1608248597359-5f21d3f9b2fa?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    "id": 17,
+    "name": "Boho Woven Straw Shoulder Bag",
+    "category": "Bag",
+    "price": 1350,
+    "rating": 4.6,
+    "stock": 22,
+    "brand": "Aarong Artisan",
+    "description": "Handmade natural jute and straw circular shoulder bag with sturdy leather strap.",
+    "image": "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    "id": 18,
+    "name": "Casual Summer Linen Shorts",
+    "category": "Beachwear",
+    "price": 850,
+    "rating": 4.5,
+    "stock": 36,
+    "brand": "Sailor Breeze",
+    "description": "Elastic drawstring waistband shorts crafted from cool pre-washed soft linen blend.",
+    "image": "https://images.unsplash.com/photo-1591195853828-11db59a44f6b?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    "id": 19,
+    "name": "Hydro Vacuum Thermal Tumbler",
+    "category": "Accessories",
+    "price": 680,
+    "rating": 4.7,
+    "stock": 50,
+    "brand": "ChillTherm",
+    "description": "Leak-proof 750ml tumbler with spill-resistant straw lid for refreshing cold juices.",
+    "image": "https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    "id": 20,
+    "name": "99% Pure Aloe Vera Soothing Gel",
+    "category": "Skincare",
+    "price": 480,
+    "rating": 4.9,
+    "stock": 75,
+    "brand": "HerbalSun",
+    "description": "Instant relief for sunburnt skin, reducing redness and replenishing skin moisture.",
+    "image": "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    "id": 21,
+    "name": "Vintage Round Acetate Shades",
+    "category": "Accessories",
+    "price": 880,
+    "rating": 4.6,
+    "stock": 30,
+    "brand": "RetroLook",
+    "description": "Chic 70s inspired round tortoise shell frame with category 3 UV protection.",
+    "image": "https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    "id": 22,
+    "name": "Breathable Perforated Summer Loafers",
+    "category": "Shoes",
+    "price": 1850,
+    "rating": 4.8,
+    "stock": 18,
+    "brand": "Apex Breeze",
+    "description": "Genuine perforated soft leather slip-on driving shoes with anti-sweat lining.",
+    "image": "https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    "id": 23,
+    "name": "Universal Waterproof Phone Case",
+    "category": "Accessories",
+    "price": 280,
+    "rating": 4.5,
+    "stock": 90,
+    "brand": "AquaShield",
+    "description": "IPX8 certified underwater touch-sensitive transparent case with neck lanyard.",
+    "image": "https://images.unsplash.com/photo-1584438784894-089d6a62b8fa?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    "id": 24,
+    "name": "Reversible Cotton Bucket Hat",
+    "category": "Accessories",
+    "price": 490,
+    "rating": 4.6,
+    "stock": 40,
+    "brand": "UrbanSun",
+    "description": "Dual-sided summer bucket hat featuring solid minimalist navy and floral patterns.",
+    "image": "https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    "id": 25,
+    "name": "Sun-Proof Lightweight Windbreaker",
+    "category": "Beachwear",
+    "price": 1450,
+    "rating": 4.7,
+    "stock": 26,
+    "brand": "BreezeArmor",
+    "description": "Ultra-thin UPF 40+ windbreaker jacket packs down into its own pocket for easy carry.",
+    "image": "https://images.unsplash.com/photo-1548883354-7622d03aca27?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    "id": 26,
+    "name": "Ultra-Mini UV Capsule Umbrella",
+    "category": "Accessories",
+    "price": 690,
+    "rating": 4.6,
+    "stock": 32,
+    "brand": "SunGuard Mini",
+    "description": "Fits inside small handbags. Titanium-coated silver fabric blocks intense summer heat.",
+    "image": "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=600&q=80"
   }
 ]

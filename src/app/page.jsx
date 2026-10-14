@@ -1,5 +1,7 @@
 import HeroSection from "@/components/HeroSection";
+import FlashDeals from "@/components/FlashDeals";
 import PopularProducts from "@/components/PopularProducts";
+import CuratedCollections from "@/components/CuratedCollections";
 import products from "@/data/products.json";
 import SummerTips from "@/components/SummerTips";
 import TopBrands from "@/components/TopBrands";
@@ -7,29 +9,33 @@ import Link from "next/link";
 import { FiArrowRight } from "react-icons/fi";
 
 export default function HomePage() {
-  const popularProducts = products.slice(0, 4);
+  // Show 8 products for two balanced 4-column rows
+  const popularProducts = products.slice(0, 8);
 
   return (
     <main>
       <HeroSection />
 
-      {/* Popular Products Showcase Section */}
-      <section className="bg-[#0b0a26] py-12 px-4 md:px-6 border-t border-white/5">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex items-center justify-between mb-6">
+      {/* 1. Flash Deals with Live Countdown */}
+      <FlashDeals />
+
+      {/* 2. Popular Products Showcase (4-Column Grid) */}
+      <section className="bg-[#0b0a26] py-10 px-4 md:px-6 border-t border-white/5">
+        <div className="max-w-6xl mx-auto space-y-5">
+          <div className="flex items-center justify-between">
             <div>
-              <p className="text-[#ff2d6b] text-[11px] font-bold uppercase tracking-widest">
+              <p className="text-[#ff2d6b] text-[10px] font-bold uppercase tracking-widest">
                 Seasonal Top Picks
               </p>
-              <h2 className="text-2xl md:text-3xl font-extrabold text-white mt-0.5">
-                Popular <span className="text-[#ff2d6b]">Products</span>
+              <h2 className="text-xl md:text-2xl font-black text-white mt-0.5">
+                Popular <span className="text-[#ff2d6b]">Summer Essentials</span>
               </h2>
             </div>
             <Link
               href="/products"
               className="text-xs font-semibold text-white/70 hover:text-white flex items-center gap-1 group transition"
             >
-              View Full Collection{" "}
+              Explore All 26 Items{" "}
               <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
@@ -43,7 +49,13 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* 3. Curated Summer Category Collections */}
+      <CuratedCollections />
+
+      {/* 4. Summer Health & Care Tips */}
       <SummerTips />
+
+      {/* 5. Trusted Brands Infinite Marquee */}
       <TopBrands />
     </main>
   );

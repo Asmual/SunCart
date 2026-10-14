@@ -1,8 +1,14 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
 import { MdEmail, MdPhone, MdLocationOn } from "react-icons/md";
 
 const Footer = () => {
+  const pathname = usePathname();
+  if (pathname === "/login" || pathname === "/register") return null;
+
   return (
     <footer className="bg-[#08071f] border-t border-white/5 text-white">
     
