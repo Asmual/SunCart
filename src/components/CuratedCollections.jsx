@@ -41,7 +41,7 @@ const collections = [
 
 export default function CuratedCollections() {
   return (
-    <section className="bg-[#0b0927] py-10 px-4 md:px-6 border-t border-white/5">
+    <section className="bg-theme-page py-10 px-4 md:px-6 border-t border-theme-subtle transition-colors duration-300">
       <div className="max-w-6xl mx-auto space-y-5">
 
         {/* Header */}
@@ -50,13 +50,13 @@ export default function CuratedCollections() {
             <p className="text-[#ff2d6b] text-[10px] font-bold uppercase tracking-[2px]">
               Curated Seasonal Moods
             </p>
-            <h2 className="text-xl md:text-2xl font-black text-white mt-0.5">
+            <h2 className="text-xl md:text-2xl font-black text-theme-main mt-0.5">
               Shop by <span className="text-[#ff2d6b]">Summer Category</span>
             </h2>
           </div>
           <Link
             href="/products"
-            className="text-xs font-semibold text-white/60 hover:text-white flex items-center gap-1 group transition"
+            className="text-xs font-semibold text-theme-muted hover:text-theme-main flex items-center gap-1 group transition"
           >
             All 26 Products <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
           </Link>
@@ -78,7 +78,7 @@ export default function CuratedCollections() {
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                 className="object-cover group-hover:scale-108 transition-transform duration-700 -z-10"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#090824] via-[#090824]/60 to-transparent -z-10" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent -z-10" />
 
               {/* Top Tag */}
               <span className="absolute top-3 left-3 bg-[#ff2d6b]/90 backdrop-blur-md text-white text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md shadow-sm">

@@ -1,9 +1,46 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
-:root {
-  --background: #0b0b30;
-  --foreground: #ffffff;
+/* Unified Design System - Theme Tokens */
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg-page: #0b0a26;
+  --bg-page-subtle: #08071f;
+  --bg-card: rgba(255, 255, 255, 0.04);
+  --bg-card-hover: rgba(255, 255, 255, 0.08);
+  --bg-card-solid: #131138;
+  --bg-card-elevated: #1a174a;
+  --bg-header: rgba(11, 10, 38, 0.95);
+  --bg-input: #0d0b2e;
+  --border-theme: rgba(255, 255, 255, 0.1);
+  --border-theme-subtle: rgba(255, 255, 255, 0.05);
+  --border-theme-hover: rgba(255, 45, 107, 0.4);
+  --text-main: #ffffff;
+  --text-muted: rgba(255, 255, 255, 0.7);
+  --text-dim: rgba(255, 255, 255, 0.45);
+  --brand-pink: #ff2d6b;
+  --brand-pink-hover: #e0255e;
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+  --bg-page: #f8fafc;
+  --bg-page-subtle: #f1f5f9;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f8fafc;
+  --bg-card-solid: #ffffff;
+  --bg-card-elevated: #ffffff;
+  --bg-header: rgba(255, 255, 255, 0.95);
+  --bg-input: #ffffff;
+  --border-theme: #e2e8f0;
+  --border-theme-subtle: #f1f5f9;
+  --border-theme-hover: rgba(255, 45, 107, 0.5);
+  --text-main: #0f172a;
+  --text-muted: #475569;
+  --text-dim: #94a3b8;
+  --brand-pink: #ff2d6b;
+  --brand-pink-hover: #e0255e;
 }
 
 input::-ms-reveal,
@@ -12,17 +49,77 @@ input::-ms-clear {
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-page: var(--bg-page);
+  --color-page-subtle: var(--bg-page-subtle);
+  --color-card: var(--bg-card);
+  --color-card-hover: var(--bg-card-hover);
+  --color-card-solid: var(--bg-card-solid);
+  --color-header: var(--bg-header);
+  --color-input: var(--bg-input);
+  --color-theme-border: var(--border-theme);
+  --color-theme-border-subtle: var(--border-theme-subtle);
+  --color-theme-main: var(--text-main);
+  --color-theme-muted: var(--text-muted);
+  --color-theme-dim: var(--text-dim);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background-color: var(--bg-page);
+  color: var(--text-main);
   font-family: Arial, Helvetica, sans-serif;
   overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Reusable Theme Utility Classes */
+.bg-theme-page {
+  background-color: var(--bg-page);
+}
+.bg-theme-subtle {
+  background-color: var(--bg-page-subtle);
+}
+.bg-theme-card {
+  background-color: var(--bg-card);
+}
+.bg-theme-card-hover:hover {
+  background-color: var(--bg-card-hover);
+}
+.bg-theme-card-solid {
+  background-color: var(--bg-card-solid);
+}
+.bg-theme-card-elevated {
+  background-color: var(--bg-card-elevated);
+}
+.bg-theme-header {
+  background-color: var(--bg-header);
+}
+.bg-theme-input {
+  background-color: var(--bg-input);
+}
+.border-theme {
+  border-color: var(--border-theme);
+}
+.border-theme-subtle {
+  border-color: var(--border-theme-subtle);
+}
+.text-theme-main {
+  color: var(--text-main);
+}
+.text-theme-muted {
+  color: var(--text-muted);
+}
+.text-theme-dim {
+  color: var(--text-dim);
+}
+
+/* Light mode specific card shadow enhancements */
+[data-theme="light"] .theme-card-shadow {
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
+}
+[data-theme="dark"] .theme-card-shadow {
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.3);
 }
 
 /* Infinite Marquee Animation */

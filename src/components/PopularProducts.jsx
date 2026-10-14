@@ -76,7 +76,7 @@ const PopularProducts = ({ product }) => {
   };
 
   return (
-    <div className="group relative bg-[#131138]/80 hover:bg-[#181545] border border-white/8 hover:border-[#ff2d6b]/40 rounded-xl overflow-hidden transition-all duration-300 flex flex-col justify-between shadow-md hover:shadow-[0_8px_25px_rgba(255,45,107,0.12)]">
+    <div className="group relative bg-theme-card border border-theme hover:border-[#ff2d6b]/40 rounded-xl overflow-hidden transition-all duration-300 flex flex-col justify-between theme-card-shadow">
 
       {/* Floating Wishlist Button */}
       <button
@@ -84,7 +84,7 @@ const PopularProducts = ({ product }) => {
         className={`absolute top-2 right-2 z-20 w-7 h-7 rounded-full flex items-center justify-center backdrop-blur-md transition-all ${
           isWishlisted
             ? "bg-[#ff2d6b] text-white shadow-md"
-            : "bg-black/50 text-white/70 hover:text-white hover:bg-black/80"
+            : "bg-black/50 text-white/80 hover:text-white hover:bg-black/80"
         }`}
         title={isWishlisted ? "Remove from Wishlist" : "Save to Wishlist"}
       >
@@ -92,7 +92,7 @@ const PopularProducts = ({ product }) => {
       </button>
 
       {/* Edge-to-Edge Image Header with No Excessive Padding */}
-      <Link href={`/products/${id}`} className="relative block w-full aspect-[4/3] bg-[#0c0a2a] overflow-hidden">
+      <Link href={`/products/${id}`} className="relative block w-full aspect-[4/3] bg-theme-subtle overflow-hidden">
         <Image
           src={imgSrc || "/images/bottle.jpg"}
           alt={name}
@@ -112,15 +112,15 @@ const PopularProducts = ({ product }) => {
       {/* Product Content Body */}
       <div className="p-3 flex flex-col justify-between flex-1 gap-2">
         <div>
-          <div className="flex items-center justify-between text-[11px] text-white/50 mb-1">
+          <div className="flex items-center justify-between text-[11px] text-theme-dim mb-1">
             <span className="text-amber-400 font-semibold flex items-center gap-0.5">
               ★ {rating}
             </span>
-            <span className="text-[10px] text-emerald-400 font-medium">In Stock</span>
+            <span className="text-[10px] text-emerald-500 font-medium">In Stock</span>
           </div>
 
           <Link href={`/products/${id}`} className="block">
-            <h2 className="text-white font-semibold text-xs sm:text-sm hover:text-[#ff2d6b] transition line-clamp-1" title={name}>
+            <h2 className="text-theme-main font-semibold text-xs sm:text-sm hover:text-[#ff2d6b] transition line-clamp-1" title={name}>
               {name}
             </h2>
           </Link>
@@ -130,7 +130,7 @@ const PopularProducts = ({ product }) => {
           {/* Price Line */}
           <div className="flex items-baseline gap-2 mb-2.5">
             <span className="text-[#ff2d6b] font-bold text-base">৳{price}</span>
-            <span className="text-white/30 text-[11px] line-through">৳{Math.round(price * 1.25)}</span>
+            <span className="text-theme-dim text-[11px] line-through">৳{Math.round(price * 1.25)}</span>
           </div>
 
           {/* Action Buttons Row */}
@@ -143,7 +143,7 @@ const PopularProducts = ({ product }) => {
             </button>
             <Link
               href={`/products/${id}`}
-              className="px-2.5 py-1.5 border border-white/15 hover:border-white/30 text-white/80 hover:text-white rounded-lg text-[11px] font-medium text-center transition hover:bg-white/5"
+              className="px-2.5 py-1.5 border border-theme hover:border-[#ff2d6b]/40 text-theme-muted hover:text-theme-main rounded-lg text-[11px] font-medium text-center transition hover:bg-black/5 dark:hover:bg-white/5"
             >
               Details
             </Link>

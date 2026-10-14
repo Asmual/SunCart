@@ -7,7 +7,7 @@ import 'animate.css';
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-[calc(100vh-88px)] lg:h-[calc(100vh-88px)] bg-[#0c0a2a] overflow-hidden flex items-center py-6 lg:py-0">
+    <section className="relative min-h-[calc(100vh-88px)] lg:h-[calc(100vh-88px)] bg-theme-page overflow-hidden flex items-center transition-colors duration-300">
 
       {/* Background effects */}
       <div className="absolute top-0 left-0 w-72 h-72 bg-purple-800 opacity-20 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
@@ -21,7 +21,7 @@ const HeroSection = () => {
             New Arrival 2025
           </p>
 
-          <h1 className="text-3xl md:text-5xl lg:text-5xl font-black text-white leading-tight mb-1">
+          <h1 className="text-3xl md:text-5xl lg:text-5xl font-black text-theme-main leading-tight mb-1">
             SUMMER SALE
           </h1>
 
@@ -29,13 +29,13 @@ const HeroSection = () => {
             <span className="text-[#ff2d6b] inline-block animate__animated animate__pulse animate__infinite">
               50%
             </span>
-            <span className="text-white"> OFF</span>
+            <span className="text-theme-main"> OFF</span>
           </h2>
 
           <div className="mb-4">
             <Link
               href="/products"
-              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full border-2 border-[#ff2d6b] px-6 py-2 font-bold text-xs md:text-sm text-white transition-all duration-300 hover:bg-[#ff2d6b]"
+              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full border-2 border-[#ff2d6b] px-6 py-2 font-bold text-xs md:text-sm text-theme-main transition-all duration-300 hover:bg-[#ff2d6b] hover:text-white"
             >
               <span className="relative z-10 flex items-center gap-1.5">
                 HOT SUMMER DEALS
@@ -45,7 +45,7 @@ const HeroSection = () => {
             </Link>
           </div>
 
-          <p className="text-gray-400 text-xs md:text-sm leading-relaxed max-w-sm mb-5">
+          <p className="text-theme-muted text-xs md:text-sm leading-relaxed max-w-sm mb-5">
             Step into the heat with lightweight, breathable fabrics and UV-protecting gear crafted for true seasonal comfort.
           </p>
 
@@ -62,35 +62,35 @@ const HeroSection = () => {
 
             <Link
               href="/products"
-              className="flex items-center gap-2 border-2 border-white/40 text-white text-sm font-bold px-7 py-3 rounded-full hover:bg-white hover:text-[#0d0b2e] transition-all transform hover:-translate-y-0.5"
+              className="flex items-center gap-2 border-2 border-theme hover:border-[#ff2d6b] text-theme-main text-sm font-bold px-7 py-3 rounded-full hover:bg-[#ff2d6b] hover:text-white transition-all transform hover:-translate-y-0.5"
             >
               EXPLORE PRODUCTS
             </Link>
           </div>
         </div>
 
-        {/* Right Side Image Showcase */}
-        <div className="relative flex justify-center items-center h-full min-h-[360px] lg:min-h-0 py-4 lg:py-6 animate__animated animate__fadeInRight animate__delay-0.5s">
-          <span className="absolute text-[160px] md:text-[220px] lg:text-[260px] font-black text-white/5 select-none leading-none top-1/2 -translate-y-1/2 pointer-events-none">
+        {/* Right Side Image Showcase (with 20px padding / margin clearance) */}
+        <div className="relative flex justify-center items-center h-full min-h-[400px] lg:min-h-0 py-5 animate__animated animate__fadeInRight animate__delay-0.5s">
+          <span className="absolute text-[160px] md:text-[240px] lg:text-[280px] font-black text-theme-main/5 select-none leading-none top-1/2 -translate-y-1/2 pointer-events-none">
             50
           </span>
 
-          <div className="absolute top-2 sm:top-4 left-2 sm:left-4 lg:left-2 z-30 animate__animated animate__fadeInUp">
-            <div className="relative bg-white/10 backdrop-blur-md border border-white/20 text-white text-center px-4 py-2 sm:px-5 sm:py-3 rounded-2xl shadow-xl">
+          <div className="absolute top-2 sm:top-5 left-2 sm:left-4 lg:left-0 z-30 animate__animated animate__fadeInUp">
+            <div className="relative bg-theme-card-solid/80 backdrop-blur-md border border-theme text-theme-main text-center px-4 py-2 sm:px-5 sm:py-3 rounded-2xl shadow-xl">
               <p className="text-2xl sm:text-3xl font-black text-[#ff2d6b]">250+</p>
-              <p className="text-[9px] sm:text-[10px] text-gray-300 uppercase font-semibold tracking-wider">New Product</p>
+              <p className="text-[9px] sm:text-[10px] text-theme-muted uppercase font-semibold tracking-wider">New Product</p>
             </div>
           </div>
 
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 sm:w-80 sm:h-80 bg-purple-600 opacity-20 rounded-full blur-[80px] pointer-events-none"></div>
 
-          {/* Contained Lady Image with Padding & Margin */}
-          <div className="relative z-10 w-full h-full flex justify-center items-center p-3 sm:p-5">
+          {/* Large Hero Lady Fashion Image fitting comfortably with 20px top & bottom margin */}
+          <div className="relative z-10 w-full h-full flex justify-center items-center">
             <Image
               src={HeroImage}
               alt="Summer Sale Fashion"
               priority
-              className="relative z-20 w-auto h-auto max-h-[360px] sm:max-h-[420px] lg:max-h-[min(480px,calc(100vh-170px))] object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.6)] transform hover:scale-105 transition-transform duration-500"
+              className="relative z-20 w-auto h-auto max-h-[440px] sm:max-h-[520px] lg:max-h-[min(620px,calc(100vh-128px))] object-contain drop-shadow-[0_20px_60px_rgba(0,0,0,0.6)] transform hover:scale-105 transition-transform duration-500"
             />
           </div>
         </div>
@@ -106,7 +106,7 @@ const HeroSection = () => {
           <a
             key={i}
             href={s.href}
-            className="w-10 h-10 rounded-full border border-white/15 text-gray-400 flex items-center justify-center hover:border-[#ff2d6b] hover:text-[#ff2d6b] hover:bg-[#ff2d6b]/10 transition-all shadow-sm text-sm"
+            className="w-10 h-10 rounded-full border border-theme text-theme-muted flex items-center justify-center hover:border-[#ff2d6b] hover:text-[#ff2d6b] hover:bg-[#ff2d6b]/10 transition-all shadow-sm text-sm"
           >
             {s.icon}
           </a>

@@ -163,18 +163,18 @@ export default function MyProfile() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#0B0B38] text-white">
-        <div className="w-12 h-12 border-4 border-pink-500 border-t-transparent rounded-full animate-spin"></div>
+      <div className="min-h-screen flex items-center justify-center bg-theme-page text-theme-main transition-colors duration-300">
+        <div className="w-12 h-12 border-4 border-[#ff2d6b] border-t-transparent rounded-full animate-spin"></div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[#0B0B38] text-white py-12 px-4">
+    <div className="min-h-screen bg-theme-page text-theme-main py-12 px-4 transition-colors duration-300">
       <div className="max-w-4xl mx-auto space-y-6">
 
         {/* Tab Navigation */}
-        <div className="flex items-center justify-center gap-3 bg-[#080836] border border-white/10 p-1.5 rounded-2xl max-w-md mx-auto">
+        <div className="flex items-center justify-center gap-3 bg-theme-card border border-theme p-1.5 rounded-2xl max-w-md mx-auto">
           <button
             onClick={() => setActiveTab("profile")}
             className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-bold transition-all ${
@@ -198,14 +198,14 @@ export default function MyProfile() {
         </div>
 
         {activeTab === "profile" ? (
-          <div className="w-full max-w-2xl mx-auto bg-[#080836] border border-gray-800 rounded-3xl p-8 shadow-2xl space-y-8">
-            <h2 className="text-3xl font-extrabold tracking-wide text-center bg-gradient-to-r from-pink-400 to-fuchsia-400 bg-clip-text text-transparent">
+          <div className="w-full max-w-2xl mx-auto bg-theme-card border border-theme rounded-3xl p-8 shadow-2xl space-y-8">
+            <h2 className="text-3xl font-extrabold tracking-wide text-center bg-gradient-to-r from-pink-500 to-rose-500 bg-clip-text text-transparent">
               My Account Profile
             </h2>
 
             {/* Profile Image Workspace Section */}
             <div className="flex flex-col items-center space-y-4">
-              <div className="relative group w-32 h-32 rounded-full border-4 border-pink-500/40 overflow-hidden shadow-xl bg-[#161646]">
+              <div className="relative group w-32 h-32 rounded-full border-4 border-[#ff2d6b]/40 overflow-hidden shadow-xl bg-theme-subtle">
                 {editFields.image ? (
                   <img
                     src={editFields.image}
@@ -246,10 +246,10 @@ export default function MyProfile() {
             <div className="space-y-5">
               {/* Full Name */}
               <div className="flex flex-col space-y-2">
-                <label className="text-xs font-semibold tracking-wider text-gray-400 uppercase">
+                <label className="text-xs font-semibold tracking-wider text-theme-muted uppercase">
                   Full Name
                 </label>
-                <div className="relative flex items-center bg-[#161646] rounded-xl border border-gray-800 px-4 py-3">
+                <div className="relative flex items-center bg-theme-input rounded-xl border border-theme px-4 py-3">
                   {editStates.name ? (
                     <input
                       type="text"
@@ -275,10 +275,10 @@ export default function MyProfile() {
 
               {/* Phone Number */}
               <div className="flex flex-col space-y-2">
-                <label className="text-xs font-semibold tracking-wider text-gray-400 uppercase">
+                <label className="text-xs font-semibold tracking-wider text-theme-muted uppercase">
                   Phone Number
                 </label>
-                <div className="relative flex items-center bg-[#161646] rounded-xl border border-gray-800 px-4 py-3">
+                <div className="relative flex items-center bg-theme-input rounded-xl border border-theme px-4 py-3">
                   {editStates.phone ? (
                     <input
                       type="text"
@@ -304,12 +304,12 @@ export default function MyProfile() {
 
               {/* Email Address (Immutable) */}
               <div className="flex flex-col space-y-2">
-                <label className="text-xs font-semibold tracking-wider text-gray-400 uppercase">
+                <label className="text-xs font-semibold tracking-wider text-theme-muted uppercase">
                   Email Address
                 </label>
-                <div className="flex items-center justify-between bg-[#11113a] rounded-xl border border-gray-900/60 px-4 py-3 cursor-not-allowed select-none opacity-60">
-                  <span className="text-gray-400 font-medium text-sm">{session?.email}</span>
-                  <FiLock size={15} className="text-gray-500" />
+                <div className="flex items-center justify-between bg-theme-subtle rounded-xl border border-theme px-4 py-3 cursor-not-allowed select-none opacity-60">
+                  <span className="text-theme-muted font-medium text-sm">{session?.email}</span>
+                  <FiLock size={15} className="text-theme-muted" />
                 </div>
               </div>
             </div>
@@ -327,9 +327,9 @@ export default function MyProfile() {
           </div>
         ) : (
           /* User Orders Tab */
-          <div className="w-full bg-[#080836] border border-gray-800 rounded-3xl p-8 shadow-2xl">
-            <h2 className="text-2xl font-bold mb-6 text-white flex items-center gap-2">
-              <FiShoppingBag className="text-pink-500" /> My Orders History
+          <div className="w-full bg-theme-card border border-theme rounded-3xl p-8 shadow-2xl">
+            <h2 className="text-2xl font-bold mb-6 text-theme-main flex items-center gap-2">
+              <FiShoppingBag className="text-[#ff2d6b]" /> My Orders History
             </h2>
 
             {ordersLoading ? (

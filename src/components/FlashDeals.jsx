@@ -70,11 +70,11 @@ export default function FlashDeals() {
   const formatDigit = (num) => String(num).padStart(2, "0");
 
   return (
-    <section className="bg-[#0c0a2a] py-10 px-4 md:px-6 border-t border-white/5">
+    <section className="bg-theme-page py-10 px-4 md:px-6 border-t border-theme-subtle transition-colors duration-300">
       <div className="max-w-6xl mx-auto space-y-6">
 
         {/* Section Header with Live Countdown Banner */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-gradient-to-r from-pink-600/20 via-purple-600/10 to-amber-500/10 border border-pink-500/30 rounded-2xl p-4 backdrop-blur-md">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-gradient-to-r from-pink-600/15 via-purple-600/10 to-amber-500/10 border border-pink-500/30 rounded-2xl p-4 backdrop-blur-md">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-pink-600 flex items-center justify-center text-white text-lg shadow-lg shadow-pink-600/40">
               <FiZap />
@@ -84,9 +84,9 @@ export default function FlashDeals() {
                 <span className="text-[10px] bg-red-500 text-white font-black px-2 py-0.5 rounded-full uppercase tracking-wider animate-pulse">
                   Limited Time
                 </span>
-                <span className="text-xs text-white/50 font-medium">Daily Summer Flash Sale</span>
+                <span className="text-xs text-theme-dim font-medium">Daily Summer Flash Sale</span>
               </div>
-              <h2 className="text-lg md:text-xl font-black text-white mt-0.5">
+              <h2 className="text-lg md:text-xl font-black text-theme-main mt-0.5">
                 Today&apos;s <span className="text-[#ff2d6b]">Flash Deals</span> 🔥
               </h2>
             </div>
@@ -94,23 +94,23 @@ export default function FlashDeals() {
 
           {/* Countdown Clock Display */}
           <div className="flex items-center gap-2 self-start md:self-auto">
-            <span className="text-xs text-white/50 flex items-center gap-1 font-semibold mr-1">
+            <span className="text-xs text-theme-muted flex items-center gap-1 font-semibold mr-1">
               <FiClock className="text-pink-400" /> Ends In:
             </span>
             <div className="flex items-center gap-1.5 font-mono font-bold text-xs">
-              <div className="bg-[#12103d] border border-white/15 px-2.5 py-1.5 rounded-lg text-white text-center">
-                <span className="text-pink-400 font-extrabold">{formatDigit(timeLeft.hours)}</span>
-                <p className="text-[8px] text-white/40 uppercase">Hours</p>
+              <div className="bg-theme-card-solid border border-theme px-2.5 py-1.5 rounded-lg text-theme-main text-center">
+                <span className="text-pink-500 font-extrabold">{formatDigit(timeLeft.hours)}</span>
+                <p className="text-[8px] text-theme-dim uppercase">Hours</p>
               </div>
-              <span className="text-pink-400 font-bold">:</span>
-              <div className="bg-[#12103d] border border-white/15 px-2.5 py-1.5 rounded-lg text-white text-center">
-                <span className="text-pink-400 font-extrabold">{formatDigit(timeLeft.minutes)}</span>
-                <p className="text-[8px] text-white/40 uppercase">Mins</p>
+              <span className="text-pink-500 font-bold">:</span>
+              <div className="bg-theme-card-solid border border-theme px-2.5 py-1.5 rounded-lg text-theme-main text-center">
+                <span className="text-pink-500 font-extrabold">{formatDigit(timeLeft.minutes)}</span>
+                <p className="text-[8px] text-theme-dim uppercase">Mins</p>
               </div>
-              <span className="text-pink-400 font-bold">:</span>
-              <div className="bg-[#12103d] border border-white/15 px-2.5 py-1.5 rounded-lg text-white text-center">
-                <span className="text-pink-400 font-extrabold">{formatDigit(timeLeft.seconds)}</span>
-                <p className="text-[8px] text-white/40 uppercase">Secs</p>
+              <span className="text-pink-500 font-bold">:</span>
+              <div className="bg-theme-card-solid border border-theme px-2.5 py-1.5 rounded-lg text-theme-main text-center">
+                <span className="text-pink-500 font-extrabold">{formatDigit(timeLeft.seconds)}</span>
+                <p className="text-[8px] text-theme-dim uppercase">Secs</p>
               </div>
             </div>
           </div>
@@ -124,7 +124,7 @@ export default function FlashDeals() {
             return (
               <div
                 key={item.id}
-                className="group relative bg-[#131138]/90 hover:bg-[#181545] border border-pink-500/20 hover:border-pink-500/50 rounded-xl overflow-hidden transition-all duration-300 flex flex-col justify-between shadow-md"
+                className="group relative bg-theme-card hover:bg-theme-card border border-pink-500/20 hover:border-pink-500/50 rounded-xl overflow-hidden transition-all duration-300 flex flex-col justify-between theme-card-shadow"
               >
                 {/* Discount Badge */}
                 <div className="absolute top-2 left-2 z-20 bg-gradient-to-r from-red-600 to-pink-600 text-white font-black text-[10px] px-2 py-0.5 rounded-md shadow-md">
@@ -132,7 +132,7 @@ export default function FlashDeals() {
                 </div>
 
                 {/* Product Image */}
-                <Link href={`/products/${item.id}`} className="relative block w-full aspect-[4/3] bg-[#0c0a2a] overflow-hidden">
+                <Link href={`/products/${item.id}`} className="relative block w-full aspect-[4/3] bg-theme-subtle overflow-hidden">
                   <Image
                     src={item.image}
                     alt={item.name}
@@ -145,11 +145,11 @@ export default function FlashDeals() {
                 {/* Card Body */}
                 <div className="p-3 flex flex-col justify-between flex-1 gap-2">
                   <div>
-                    <span className="text-[9px] text-pink-400 font-bold uppercase tracking-wider block mb-0.5">
+                    <span className="text-[9px] text-pink-500 font-bold uppercase tracking-wider block mb-0.5">
                       {item.category}
                     </span>
                     <Link href={`/products/${item.id}`}>
-                      <h3 className="text-xs sm:text-sm font-semibold text-white hover:text-pink-400 transition line-clamp-1">
+                      <h3 className="text-xs sm:text-sm font-semibold text-theme-main hover:text-pink-500 transition line-clamp-1">
                         {item.name}
                       </h3>
                     </Link>
@@ -157,11 +157,11 @@ export default function FlashDeals() {
 
                   {/* Stock Progress Bar */}
                   <div className="space-y-1">
-                    <div className="flex justify-between text-[10px] text-white/50">
-                      <span>Sold: <b className="text-white">{item.sold}</b></span>
-                      <span className="text-pink-400 font-semibold">{item.totalStock - item.sold} left</span>
+                    <div className="flex justify-between text-[10px] text-theme-dim">
+                      <span>Sold: <b className="text-theme-main">{item.sold}</b></span>
+                      <span className="text-pink-500 font-semibold">{item.totalStock - item.sold} left</span>
                     </div>
-                    <div className="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+                    <div className="w-full h-1.5 bg-theme-subtle rounded-full overflow-hidden border border-theme-subtle">
                       <div
                         className="h-full bg-gradient-to-r from-amber-400 to-pink-500 transition-all duration-500"
                         style={{ width: `${soldPercent}%` }}
@@ -172,15 +172,15 @@ export default function FlashDeals() {
                   {/* Price & Buy Button */}
                   <div className="pt-1">
                     <div className="flex items-baseline gap-1.5 mb-2">
-                      <span className="text-pink-400 font-black text-base">৳{item.price}</span>
-                      <span className="text-white/30 text-[11px] line-through">
+                      <span className="text-pink-500 font-black text-base">৳{item.price}</span>
+                      <span className="text-theme-dim text-[11px] line-through">
                         ৳{Math.round(item.price * 1.35)}
                       </span>
                     </div>
 
                     <button
                       onClick={(e) => handleAddToCart(e, item)}
-                      className="w-full flex items-center justify-center gap-1 bg-[#ff2d6b] hover:bg-[#e0255e] text-white py-1.5 rounded-lg text-[11px] font-bold transition shadow-sm"
+                      className="w-full flex items-center justify-center gap-1 bg-[#ff2d6b] hover:bg-[#e0255e] text-white py-1.5 rounded-lg text-[11px] font-bold transition shadow-sm cursor-pointer"
                     >
                       <FiShoppingCart size={12} /> Claim Deal
                     </button>
