@@ -161,6 +161,10 @@ const ProductDetails = ({ product }) => {
               src={image}
               alt={name}
               className="max-h-[380px] w-auto object-contain drop-shadow-[0_15px_30px_rgba(0,0,0,0.5)] hover:scale-105 transition-transform duration-500"
+              onError={(e) => {
+                e.currentTarget.onerror = null;
+                e.currentTarget.src = "/images/bottle.jpg";
+              }}
             />
             <div className="absolute top-4 left-4 flex flex-col gap-2">
               <span className="bg-[#ff2d6b] text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-lg">

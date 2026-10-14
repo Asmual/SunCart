@@ -27,6 +27,11 @@ export async function GET(request) {
           await collection.updateOne({ id: p.id }, { $set: p }, { upsert: true });
         }
       }
+      // Ensure any legacy 404 URL in MongoDB is updated
+      await collection.updateOne(
+        { image: { $regex: "photo-1608248597359-5f21d3f9b2fa" } },
+        { $set: { image: "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=600&q=80" } }
+      );
 
       // Build MongoDB filter query
       const query = {};
