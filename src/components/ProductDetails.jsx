@@ -7,6 +7,7 @@ import Link from "next/link";
 import toast from "react-hot-toast";
 import { FiCheckCircle, FiShield, FiTruck, FiRefreshCw, FiHeart, FiShoppingCart, FiStar } from "react-icons/fi";
 import staticProducts from "@/data/products.json";
+import PopularProducts from "@/components/PopularProducts";
 
 const defaultReviews = [
   {
@@ -127,11 +128,11 @@ const ProductDetails = ({ product }) => {
 
   const relatedProducts = staticProducts
     .filter((item) => String(item.id) !== String(id))
-    .slice(0, 3);
+    .slice(0, 4);
 
   return (
-    <div className="min-h-screen bg-[#0f0d3b] text-white py-10 px-4 md:px-8">
-      <div className="max-w-6xl mx-auto space-y-12">
+    <div className="min-h-screen bg-[#0b0a28] text-white py-6 px-4 md:px-6">
+      <div className="max-w-6xl mx-auto space-y-8">
 
         {/* Breadcrumb Navigation */}
         <div className="flex items-center justify-between flex-wrap gap-4 text-sm text-white/50 border-b border-white/10 pb-4">
@@ -403,39 +404,24 @@ const ProductDetails = ({ product }) => {
         </div>
 
         {/* Recommended Related Products */}
-        <div className="space-y-6 pt-6">
+        <div className="space-y-4 pt-4 border-t border-white/5">
           <div className="flex items-center justify-between">
-            <h2 className="text-2xl font-black text-white">
-              You May Also <span className="text-[#ff2d6b]">Like</span>
-            </h2>
+            <div>
+              <p className="text-[#ff2d6b] text-[10px] font-bold uppercase tracking-wider">
+                Recommendations
+              </p>
+              <h2 className="text-lg md:text-xl font-bold text-white mt-0.5">
+                You May Also <span className="text-[#ff2d6b]">Like</span>
+              </h2>
+            </div>
             <Link href="/products" className="text-xs text-[#ff2d6b] hover:underline font-semibold">
               View All Collection →
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
             {relatedProducts.map((item) => (
-              <div
-                key={item.id}
-                className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:border-[#ff2d6b]/50 transition-all p-4 flex flex-col justify-between"
-              >
-                <div className="h-44 flex items-center justify-center p-3 bg-white/5 rounded-xl mb-4">
-                  <img src={item.image} alt={item.name} className="max-h-full object-contain" />
-                </div>
-                <div>
-                  <span className="text-[10px] text-[#ff2d6b] uppercase font-bold">{item.category}</span>
-                  <h3 className="font-bold text-white text-base mt-1 mb-2">{item.name}</h3>
-                  <div className="flex items-center justify-between mt-3">
-                    <span className="font-black text-lg text-white">৳{item.price}</span>
-                    <Link
-                      href={`/products/${item.id}`}
-                      className="px-3.5 py-1.5 rounded-xl bg-white/10 hover:bg-[#ff2d6b] text-white text-xs font-semibold transition-all"
-                    >
-                      Details
-                    </Link>
-                  </div>
-                </div>
-              </div>
+              <PopularProducts key={item.id} product={item} />
             ))}
           </div>
         </div>

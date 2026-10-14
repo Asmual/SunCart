@@ -7,47 +7,46 @@ import 'animate.css';
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-[90vh] lg:h-[85vh] bg-[#0d0b2e] overflow-hidden flex items-center pt-10 lg:pt-0">
+    <section className="relative min-h-[65vh] lg:h-[72vh] bg-[#0c0a2a] overflow-hidden flex items-center py-6 lg:py-0">
 
       {/* Background effects */}
       <div className="absolute top-0 left-0 w-72 h-72 bg-purple-800 opacity-20 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-900 opacity-25 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-2 gap-4 items-center">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-6 w-full grid grid-cols-1 lg:grid-cols-2 gap-4 items-center">
 
         {/* Left Side Content */}
         <div className="flex flex-col justify-center z-20 animate__animated animate__fadeInLeft">
-          <p className="text-[#ff2d6b] font-bold uppercase tracking-widest text-xs md:text-sm mb-3">
-            New Arrival
+          <p className="text-[#ff2d6b] font-bold uppercase tracking-widest text-[11px] md:text-xs mb-2">
+            New Arrival 2025
           </p>
 
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-[1.05] mb-1">
+          <h1 className="text-3xl md:text-5xl lg:text-5xl font-black text-white leading-tight mb-1">
             SUMMER SALE
           </h1>
 
-          <h1 className="text-5xl md:text-7xl font-black leading-[1.05] mb-6">
+          <h2 className="text-4xl md:text-6xl font-black leading-tight mb-4">
             <span className="text-[#ff2d6b] inline-block animate__animated animate__pulse animate__infinite">
               50%
             </span>
             <span className="text-white"> OFF</span>
-          </h1>
+          </h2>
 
-          <div className="mb-8">
+          <div className="mb-4">
             <Link
               href="/products"
-              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full border-2 border-[#ff2d6b] px-8 py-3 font-bold text-white transition-all duration-300 hover:bg-[#ff2d6b]"
+              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full border-2 border-[#ff2d6b] px-6 py-2 font-bold text-xs md:text-sm text-white transition-all duration-300 hover:bg-[#ff2d6b]"
             >
-              <span className="relative z-10 flex items-center gap-2">
-                HOT DEALS
+              <span className="relative z-10 flex items-center gap-1.5">
+                HOT SUMMER DEALS
                 <span className="animate__animated animate__tada animate__infinite inline-block">🔥</span>
               </span>
               <div className="absolute inset-0 z-0 h-full w-full -translate-x-full bg-linear-to-r from-transparent via-white/20 to-transparent transition-transform duration-500 group-hover:translate-x-full"></div>
             </Link>
           </div>
 
-          <p className="text-gray-400 text-md leading-relaxed max-w-xs mb-8">
-            In this summer have the latest collection. So what are you waiting
-            for guys. Scroll and get the awesome outfits.
+          <p className="text-gray-400 text-xs md:text-sm leading-relaxed max-w-sm mb-5">
+            Step into the heat with lightweight, breathable fabrics and UV-protecting gear crafted for true seasonal comfort.
           </p>
 
           <div className="flex flex-wrap gap-4">
