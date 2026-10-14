@@ -38,14 +38,14 @@ const ProductDetails = ({ product }) => {
 
   if (!product) {
     return (
-      <div className="min-h-screen bg-[#120B35] flex items-center justify-center p-6">
+      <div className="min-h-screen bg-theme-page text-theme-main flex items-center justify-center p-6 transition-colors duration-300">
         <div className="text-center">
           <p className="text-7xl mb-4">☀️</p>
-          <h2 className="text-3xl font-bold text-white mb-3">Product Not Found</h2>
-          <p className="text-white/50 mb-6">The product you are looking for does not exist or has been removed.</p>
+          <h2 className="text-3xl font-bold text-theme-main mb-3">Product Not Found</h2>
+          <p className="text-theme-muted mb-6">The product you are looking for does not exist or has been removed.</p>
           <Link
             href="/products"
-            className="px-6 py-3 bg-[#ff2d6b] text-white rounded-full font-bold hover:bg-[#e0255e] transition-all"
+            className="px-6 py-3 bg-[#ff2d6b] text-white rounded-full font-bold hover:bg-[#e0255e] transition-all cursor-pointer shadow-md shadow-[#ff2d6b]/20"
           >
             ← Back to Products
           </Link>
@@ -131,32 +131,32 @@ const ProductDetails = ({ product }) => {
     .slice(0, 4);
 
   return (
-    <div className="min-h-screen bg-[#0b0a28] text-white py-6 px-4 md:px-6">
+    <div className="min-h-screen bg-theme-page text-theme-main py-6 px-4 md:px-6 transition-colors duration-300">
       <div className="max-w-6xl mx-auto space-y-8">
 
         {/* Breadcrumb Navigation */}
-        <div className="flex items-center justify-between flex-wrap gap-4 text-sm text-white/50 border-b border-white/10 pb-4">
+        <div className="flex items-center justify-between flex-wrap gap-4 text-sm text-theme-dim border-b border-theme-subtle pb-4">
           <div className="flex items-center gap-2">
-            <Link href="/" className="hover:text-white transition">Home</Link>
+            <Link href="/" className="hover:text-theme-main transition">Home</Link>
             <span>/</span>
-            <Link href="/products" className="hover:text-white transition">Products</Link>
+            <Link href="/products" className="hover:text-theme-main transition">Products</Link>
             <span>/</span>
             <span className="text-[#ff2d6b] font-medium truncate max-w-xs">{name}</span>
           </div>
 
           <button
             onClick={() => router.back()}
-            className="text-xs bg-white/5 hover:bg-white/10 border border-white/10 px-3.5 py-1.5 rounded-full transition"
+            className="text-xs bg-theme-card hover:bg-theme-card-hover border border-theme px-3.5 py-1.5 rounded-full text-theme-muted hover:text-theme-main transition cursor-pointer"
           >
             ← Back
           </button>
         </div>
 
         {/* Product Showcase Viewport */}
-        <div className="grid md:grid-cols-2 gap-8 lg:gap-12 bg-white/3 border border-white/10 rounded-3xl p-6 md:p-10 backdrop-blur-md">
+        <div className="grid md:grid-cols-2 gap-8 lg:gap-12 bg-theme-card border border-theme rounded-3xl p-6 md:p-10 backdrop-blur-md theme-card-shadow">
 
           {/* Product Image Area */}
-          <div className="relative flex items-center justify-center bg-gradient-to-br from-white/10 to-white/5 rounded-2xl p-8 min-h-[360px] border border-white/5">
+          <div className="relative flex items-center justify-center bg-theme-subtle rounded-2xl p-8 min-h-[360px] border border-theme">
             <img
               src={image}
               alt={name}
@@ -186,7 +186,7 @@ const ProductDetails = ({ product }) => {
               </p>
             )}
 
-            <h1 className="text-3xl md:text-4xl font-black leading-tight text-white">
+            <h1 className="text-3xl md:text-4xl font-black leading-tight text-theme-main">
               {name}
             </h1>
 
@@ -260,45 +260,45 @@ const ProductDetails = ({ product }) => {
             </div>
 
             {/* Trust Badges */}
-            <div className="grid grid-cols-3 gap-3 pt-4 border-t border-white/10 text-center">
-              <div className="p-3 bg-white/3 rounded-xl border border-white/5">
+            <div className="grid grid-cols-3 gap-3 pt-4 border-t border-theme-subtle text-center">
+              <div className="p-3 bg-theme-subtle rounded-xl border border-theme">
                 <FiTruck className="mx-auto text-xl text-[#ff2d6b] mb-1" />
-                <p className="text-[11px] font-semibold text-white/80">Express Shipping</p>
-                <p className="text-[9px] text-white/40">2-3 days nationwide</p>
+                <p className="text-[11px] font-semibold text-theme-main">Express Shipping</p>
+                <p className="text-[9px] text-theme-dim">2-3 days nationwide</p>
               </div>
-              <div className="p-3 bg-white/3 rounded-xl border border-white/5">
+              <div className="p-3 bg-theme-subtle rounded-xl border border-theme">
                 <FiRefreshCw className="mx-auto text-xl text-[#ff2d6b] mb-1" />
-                <p className="text-[11px] font-semibold text-white/80">7 Days Return</p>
-                <p className="text-[9px] text-white/40">Hassle-free guarantee</p>
+                <p className="text-[11px] font-semibold text-theme-main">7 Days Return</p>
+                <p className="text-[9px] text-theme-dim">Hassle-free guarantee</p>
               </div>
-              <div className="p-3 bg-white/3 rounded-xl border border-white/5">
+              <div className="p-3 bg-theme-subtle rounded-xl border border-theme">
                 <FiShield className="mx-auto text-xl text-[#ff2d6b] mb-1" />
-                <p className="text-[11px] font-semibold text-white/80">100% Authentic</p>
-                <p className="text-[9px] text-white/40">Genuine summer stock</p>
+                <p className="text-[11px] font-semibold text-theme-main">100% Authentic</p>
+                <p className="text-[9px] text-theme-dim">Genuine summer stock</p>
               </div>
             </div>
           </div>
         </div>
 
         {/* Tabbed Section: Description & Customer Reviews */}
-        <div className="bg-white/3 border border-white/10 rounded-3xl p-6 md:p-10 backdrop-blur-md space-y-6">
-          <div className="flex items-center gap-6 border-b border-white/10 pb-4">
+        <div className="bg-theme-card border border-theme rounded-3xl p-6 md:p-10 backdrop-blur-md space-y-6 theme-card-shadow">
+          <div className="flex items-center gap-6 border-b border-theme-subtle pb-4">
             <button
               onClick={() => setActiveTab("description")}
-              className={`text-lg font-bold pb-2 transition-all border-b-2 ${
+              className={`text-lg font-bold pb-2 transition-all border-b-2 cursor-pointer ${
                 activeTab === "description"
                   ? "text-[#ff2d6b] border-[#ff2d6b]"
-                  : "text-white/50 border-transparent hover:text-white"
+                  : "text-theme-dim border-transparent hover:text-theme-main"
               }`}
             >
               Description & Specifications
             </button>
             <button
               onClick={() => setActiveTab("reviews")}
-              className={`text-lg font-bold pb-2 transition-all border-b-2 flex items-center gap-2 ${
+              className={`text-lg font-bold pb-2 transition-all border-b-2 flex items-center gap-2 cursor-pointer ${
                 activeTab === "reviews"
                   ? "text-[#ff2d6b] border-[#ff2d6b]"
-                  : "text-white/50 border-transparent hover:text-white"
+                  : "text-theme-dim border-transparent hover:text-theme-main"
               }`}
             >
               Customer Reviews ({reviews.length})
@@ -306,73 +306,73 @@ const ProductDetails = ({ product }) => {
           </div>
 
           {activeTab === "description" ? (
-            <div className="space-y-6 text-white/70 text-sm leading-relaxed">
+            <div className="space-y-6 text-theme-muted text-sm leading-relaxed">
               <p>
                 {description || "Designed specifically for warm weather and summer outdoor adventures. Made with premium grade lightweight and breathable materials to keep you comfortable throughout the day."}
               </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 pt-4 border-t border-white/10">
-                <div className="p-4 bg-white/5 rounded-2xl border border-white/5">
-                  <p className="text-xs text-white/40 uppercase">Category</p>
-                  <p className="text-base font-semibold text-white">{category}</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 pt-4 border-t border-theme-subtle">
+                <div className="p-4 bg-theme-subtle rounded-2xl border border-theme">
+                  <p className="text-xs text-theme-dim uppercase">Category</p>
+                  <p className="text-base font-semibold text-theme-main">{category}</p>
                 </div>
-                <div className="p-4 bg-white/5 rounded-2xl border border-white/5">
-                  <p className="text-xs text-white/40 uppercase">Season</p>
-                  <p className="text-base font-semibold text-white">Summer 2025</p>
+                <div className="p-4 bg-theme-subtle rounded-2xl border border-theme">
+                  <p className="text-xs text-theme-dim uppercase">Season</p>
+                  <p className="text-base font-semibold text-theme-main">Summer 2025</p>
                 </div>
-                <div className="p-4 bg-white/5 rounded-2xl border border-white/5">
-                  <p className="text-xs text-white/40 uppercase">Warranty</p>
-                  <p className="text-base font-semibold text-white">6 Months Brand Guarantee</p>
+                <div className="p-4 bg-theme-subtle rounded-2xl border border-theme">
+                  <p className="text-xs text-theme-dim uppercase">Warranty</p>
+                  <p className="text-base font-semibold text-theme-main">6 Months Brand Guarantee</p>
                 </div>
               </div>
             </div>
           ) : (
             <div className="space-y-8">
               {/* Write Review Form */}
-              <form onSubmit={handleAddReview} className="bg-white/5 border border-white/10 p-5 rounded-2xl space-y-4">
-                <h3 className="text-base font-bold text-white">Write a Review</h3>
+              <form onSubmit={handleAddReview} className="bg-theme-card border border-theme p-5 rounded-2xl space-y-4">
+                <h3 className="text-base font-bold text-theme-main">Write a Review</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="text-xs text-white/50 block mb-1">Your Name</label>
+                    <label className="text-xs text-theme-dim block mb-1">Your Name</label>
                     <input
                       type="text"
                       required
                       value={reviewForm.name}
                       onChange={(e) => setReviewForm({ ...reviewForm, name: e.target.value })}
                       placeholder="e.g. Asmual Hoque"
-                      className="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-white text-sm outline-none focus:border-[#ff2d6b]"
+                      className="w-full px-4 py-2 bg-theme-input border border-theme rounded-xl text-theme-main text-sm outline-none focus:border-[#ff2d6b]"
                     />
                   </div>
                   <div>
-                    <label className="text-xs text-white/50 block mb-1">Rating</label>
+                    <label className="text-xs text-theme-dim block mb-1">Rating</label>
                     <select
                       value={reviewForm.rating}
                       onChange={(e) => setReviewForm({ ...reviewForm, rating: e.target.value })}
-                      className="w-full px-4 py-2 bg-[#0d0b2e] border border-white/10 rounded-xl text-white text-sm outline-none focus:border-[#ff2d6b]"
+                      className="w-full px-4 py-2 bg-theme-input border border-theme rounded-xl text-theme-main text-sm outline-none focus:border-[#ff2d6b] cursor-pointer"
                     >
-                      <option value="5">⭐⭐⭐⭐⭐ (5 Stars - Amazing)</option>
-                      <option value="4">⭐⭐⭐⭐ (4 Stars - Very Good)</option>
-                      <option value="3">⭐⭐⭐ (3 Stars - Average)</option>
-                      <option value="2">⭐⭐ (2 Stars - Below expectations)</option>
-                      <option value="1">⭐ (1 Star - Poor)</option>
+                      <option value="5" className="bg-theme-card-solid text-theme-main">⭐⭐⭐⭐⭐ (5 Stars - Amazing)</option>
+                      <option value="4" className="bg-theme-card-solid text-theme-main">⭐⭐⭐⭐ (4 Stars - Very Good)</option>
+                      <option value="3" className="bg-theme-card-solid text-theme-main">⭐⭐⭐ (3 Stars - Average)</option>
+                      <option value="2" className="bg-theme-card-solid text-theme-main">⭐⭐ (2 Stars - Below expectations)</option>
+                      <option value="1" className="bg-theme-card-solid text-theme-main">⭐ (1 Star - Poor)</option>
                     </select>
                   </div>
                 </div>
 
                 <div>
-                  <label className="text-xs text-white/50 block mb-1">Your Review</label>
+                  <label className="text-xs text-theme-dim block mb-1">Your Review</label>
                   <textarea
                     required
                     rows={3}
                     value={reviewForm.comment}
                     onChange={(e) => setReviewForm({ ...reviewForm, comment: e.target.value })}
                     placeholder="Share your experience with this summer product..."
-                    className="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-white text-sm outline-none focus:border-[#ff2d6b]"
+                    className="w-full px-4 py-2 bg-theme-input border border-theme rounded-xl text-theme-main text-sm outline-none focus:border-[#ff2d6b]"
                   ></textarea>
                 </div>
 
                 <button
                   type="submit"
-                  className="px-6 py-2.5 bg-[#ff2d6b] hover:bg-[#e0255e] text-white text-sm font-bold rounded-xl transition-all"
+                  className="px-6 py-2.5 bg-[#ff2d6b] hover:bg-[#e0255e] text-white text-sm font-bold rounded-xl transition-all cursor-pointer shadow-md shadow-[#ff2d6b]/20"
                 >
                   Submit Review
                 </button>
@@ -381,17 +381,17 @@ const ProductDetails = ({ product }) => {
               {/* Reviews List */}
               <div className="space-y-4">
                 {reviews.map((rev) => (
-                  <div key={rev.id} className="p-4 bg-white/3 border border-white/5 rounded-2xl space-y-2">
+                  <div key={rev.id} className="p-4 bg-theme-card border border-theme rounded-2xl space-y-2 theme-card-shadow">
                     <div className="flex items-center justify-between flex-wrap gap-2">
                       <div className="flex items-center gap-2">
-                        <span className="font-bold text-sm text-white">{rev.name}</span>
+                        <span className="font-bold text-sm text-theme-main">{rev.name}</span>
                         {rev.verified && (
-                          <span className="text-[10px] text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full flex items-center gap-1">
+                          <span className="text-[10px] text-emerald-500 bg-emerald-500/10 px-2 py-0.5 rounded-full flex items-center gap-1 font-medium">
                             <FiCheckCircle size={10} /> Verified Buyer
                           </span>
                         )}
                       </div>
-                      <span className="text-xs text-white/40">{rev.date}</span>
+                      <span className="text-xs text-theme-dim">{rev.date}</span>
                     </div>
 
                     <div className="flex items-center gap-1 text-yellow-400 text-xs">
@@ -399,7 +399,7 @@ const ProductDetails = ({ product }) => {
                       {"☆".repeat(5 - rev.rating)}
                     </div>
 
-                    <p className="text-sm text-white/70">{rev.comment}</p>
+                    <p className="text-sm text-theme-muted">{rev.comment}</p>
                   </div>
                 ))}
               </div>
@@ -408,13 +408,13 @@ const ProductDetails = ({ product }) => {
         </div>
 
         {/* Recommended Related Products */}
-        <div className="space-y-4 pt-4 border-t border-white/5">
+        <div className="space-y-4 pt-4 border-t border-theme-subtle">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-[#ff2d6b] text-[10px] font-bold uppercase tracking-wider">
                 Recommendations
               </p>
-              <h2 className="text-lg md:text-xl font-bold text-white mt-0.5">
+              <h2 className="text-lg md:text-xl font-bold text-theme-main mt-0.5">
                 You May Also <span className="text-[#ff2d6b]">Like</span>
               </h2>
             </div>

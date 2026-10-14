@@ -20,20 +20,20 @@ export default function HomePage() {
       <FlashDeals />
 
       {/* 2. Popular Products Showcase (4-Column Grid) */}
-      <section className="bg-[#0b0a26] py-10 px-4 md:px-6 border-t border-white/5">
+      <section className="bg-theme-page py-10 px-4 md:px-6 border-t border-theme-subtle transition-colors duration-300">
         <div className="max-w-6xl mx-auto space-y-5">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-[#ff2d6b] text-[10px] font-bold uppercase tracking-widest">
                 Seasonal Top Picks
               </p>
-              <h2 className="text-xl md:text-2xl font-black text-white mt-0.5">
+              <h2 className="text-xl md:text-2xl font-black text-theme-main mt-0.5">
                 Popular <span className="text-[#ff2d6b]">Summer Essentials</span>
               </h2>
             </div>
             <Link
               href="/products"
-              className="text-xs font-semibold text-white/70 hover:text-white flex items-center gap-1 group transition"
+              className="text-xs font-semibold text-theme-muted hover:text-theme-main flex items-center gap-1 group transition"
             >
               Explore All 26 Items{" "}
               <FiArrowRight className="group-hover:translate-x-1 transition-transform" />

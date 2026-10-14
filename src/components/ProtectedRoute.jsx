@@ -20,10 +20,10 @@ const ProtectedRoute = ({ children }) => {
   // Render a responsive global loader frame pending standard protocol processing
   if (isPending) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#0f0d3b]">
+      <div className="min-h-screen flex items-center justify-center bg-theme-page text-theme-main transition-colors duration-300">
         <div className="text-center">
           <div className="w-12 h-12 border-4 border-[#ff2d6b] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-white/60">Checking authentication...</p>
+          <p className="text-theme-muted">Checking authentication...</p>
         </div>
       </div>
     );

@@ -115,7 +115,7 @@ export default function AdminDashboardPage() {
   const pendingOrders = orders.filter((o) => o.status === "Pending").length;
 
   return (
-    <div className="min-h-screen bg-[#0a082b] text-white py-12 px-4 md:px-8">
+    <div className="min-h-screen bg-theme-page text-theme-main py-12 px-4 md:px-8 transition-colors duration-300">
       <div className="max-w-7xl mx-auto space-y-8">
 
         {/* Dashboard Top Header */}
@@ -237,7 +237,7 @@ export default function AdminDashboardPage() {
                         <select
                           value={ord.status || "Pending"}
                           onChange={(e) => handleUpdateStatus(ord.orderId, e.target.value)}
-                          className="px-3 py-1.5 rounded-xl bg-[#0b0b30] border border-white/20 text-white font-medium text-xs outline-none focus:border-pink-500 cursor-pointer"
+                          className="px-3 py-1.5 rounded-xl bg-theme-subtle border border-theme text-theme-main font-medium text-xs outline-none focus:border-pink-500 cursor-pointer"
                         >
                           <option value="Pending">Pending</option>
                           <option value="Confirmed">Confirmed</option>
@@ -257,12 +257,12 @@ export default function AdminDashboardPage() {
         {/* Modal: Add New Product */}
         {showAddModal && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
-            <div className="bg-[#0f0d3b] border border-white/10 rounded-3xl p-6 md:p-8 max-w-lg w-full space-y-5 shadow-2xl">
-              <div className="flex items-center justify-between border-b border-white/10 pb-3">
-                <h3 className="text-lg font-bold text-white">Add New Summer Product</h3>
+            <div className="bg-theme-card border border-theme rounded-3xl p-6 md:p-8 max-w-lg w-full space-y-5 shadow-2xl">
+              <div className="flex items-center justify-between border-b border-theme-subtle pb-3">
+                <h3 className="text-lg font-bold text-theme-main">Add New Summer Product</h3>
                 <button
                   onClick={() => setShowAddModal(false)}
-                  className="text-white/50 hover:text-white"
+                  className="text-theme-muted hover:text-theme-main cursor-pointer"
                 >
                   ✕
                 </button>
@@ -270,24 +270,24 @@ export default function AdminDashboardPage() {
 
               <form onSubmit={handleAddProduct} className="space-y-4 text-xs">
                 <div>
-                  <label className="text-white/60 block mb-1 font-semibold">Product Name *</label>
+                  <label className="text-theme-muted block mb-1 font-semibold">Product Name *</label>
                   <input
                     type="text"
                     required
                     value={productForm.name}
                     onChange={(e) => setProductForm({ ...productForm, name: e.target.value })}
                     placeholder="e.g. UV Beach Sunscreen"
-                    className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-white outline-none focus:border-[#ff2d6b]"
+                    className="w-full px-3 py-2 bg-theme-input border border-theme rounded-xl text-theme-main outline-none focus:border-[#ff2d6b]"
                   />
                 </div>
 
                 <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <label className="text-white/60 block mb-1 font-semibold">Category *</label>
+                    <label className="text-theme-muted block mb-1 font-semibold">Category *</label>
                     <select
                       value={productForm.category}
                       onChange={(e) => setProductForm({ ...productForm, category: e.target.value })}
-                      className="w-full px-3 py-2 bg-[#0b0b30] border border-white/10 rounded-xl text-white outline-none focus:border-[#ff2d6b]"
+                      className="w-full px-3 py-2 bg-theme-input border border-theme rounded-xl text-theme-main outline-none focus:border-[#ff2d6b]"
                     >
                       <option value="Accessories">Accessories</option>
                       <option value="Shoes">Shoes</option>

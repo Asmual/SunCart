@@ -11,6 +11,7 @@ import toast from "react-hot-toast";
 import { useCart } from "@/context/CartContext";
 import { useWishlist } from "@/context/WishlistContext";
 import { FiShoppingCart, FiHeart, FiUser, FiLogOut, FiPackage, FiGrid } from "react-icons/fi";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -108,7 +109,7 @@ const Navbar = () => {
         ☀️ SUMMER MEGA SALE: UP TO 50% OFF! Free Nationwide Delivery on orders over ৳1,000 🔥
       </div>
 
-      <nav className="w-full bg-[#0b0b30]/95 backdrop-blur-md border-b border-white/5">
+      <nav className="w-full bg-theme-header backdrop-blur-md border-b border-theme-subtle transition-colors duration-300">
         <div className="max-w-6xl mx-auto px-4 md:px-6 py-3 flex items-center justify-between gap-4">
 
           {/* Brand Logo */}
@@ -120,7 +121,7 @@ const Navbar = () => {
               height={34}
               className="object-contain"
             />
-            <span className="font-black text-2xl text-white tracking-tight">
+            <span className="font-black text-2xl text-theme-main tracking-tight">
               Sun<span className="text-[#ff2d6b]">Cart</span>
             </span>
           </Link>
@@ -132,7 +133,7 @@ const Navbar = () => {
                 key={link.href}
                 href={link.href}
                 className={`text-sm font-semibold transition-colors ${
-                  pathname === link.href ? "text-[#ff2d6b]" : "text-white/70 hover:text-white"
+                  pathname === link.href ? "text-[#ff2d6b]" : "text-theme-muted hover:text-theme-main"
                 }`}
               >
                 {link.label}
@@ -140,12 +141,15 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* Right Action Icons (Wishlist, Cart, Profile) */}
-          <div className="flex items-center gap-3">
+          {/* Right Action Icons (Theme, Wishlist, Cart, Profile) */}
+          <div className="flex items-center gap-2.5">
+            {/* Theme Switcher Toggle */}
+            <ThemeToggle />
+
             {/* Wishlist Link */}
             <Link
               href="/wishlist"
-              className="relative p-2 text-white/70 hover:text-white transition rounded-full hover:bg-white/5"
+              className="relative p-2 text-theme-muted hover:text-theme-main transition rounded-full hover:bg-black/5 dark:hover:bg-white/10"
               title="View Wishlist"
             >
               <FiHeart size={20} />
@@ -159,7 +163,7 @@ const Navbar = () => {
             {/* Cart Trigger */}
             <button
               onClick={() => setIsCartOpen(true)}
-              className="relative p-2 text-white/70 hover:text-white transition rounded-full hover:bg-white/5"
+              className="relative p-2 text-theme-muted hover:text-theme-main transition rounded-full hover:bg-black/5 dark:hover:bg-white/10"
               title="Open Cart"
             >
               <FiShoppingCart size={20} />
@@ -176,23 +180,23 @@ const Navbar = () => {
                 <div className="relative flex items-center gap-2.5" ref={dropdownRef}>
                   <button
                     onClick={() => setDropdownOpen(!dropdownOpen)}
-                    className="flex items-center gap-2 focus:outline-none p-1 rounded-full hover:bg-white/5 transition"
+                    className="flex items-center gap-2 focus:outline-none p-1 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition"
                   >
                     <ProfileAvatar />
                   </button>
 
                   {/* Dropdown Menu */}
                   {dropdownOpen && (
-                    <div className="absolute right-0 top-full mt-2 w-52 bg-[#121242] border border-white/10 rounded-2xl shadow-2xl py-2 z-50">
-                      <div className="px-4 py-2 border-b border-white/5">
-                        <p className="text-xs text-white/40">Signed in as</p>
-                        <p className="text-sm font-bold text-white truncate">{user.name}</p>
+                    <div className="absolute right-0 top-full mt-2 w-52 bg-theme-card-solid border border-theme rounded-2xl shadow-2xl py-2 z-50 text-theme-main">
+                      <div className="px-4 py-2 border-b border-theme-subtle">
+                        <p className="text-xs text-theme-dim">Signed in as</p>
+                        <p className="text-sm font-bold text-theme-main truncate">{user.name}</p>
                       </div>
 
                       <Link
                         href="/my-profile"
                         onClick={() => setDropdownOpen(false)}
-                        className="flex items-center gap-2.5 px-4 py-2.5 text-xs text-white/80 hover:text-white hover:bg-white/5 transition"
+                        className="flex items-center gap-2.5 px-4 py-2.5 text-xs text-theme-muted hover:text-theme-main hover:bg-black/5 dark:hover:bg-white/5 transition"
                       >
                         <FiUser className="text-pink-400" /> My Account
                       </Link>
@@ -200,7 +204,7 @@ const Navbar = () => {
                       <Link
                         href="/wishlist"
                         onClick={() => setDropdownOpen(false)}
-                        className="flex items-center gap-2.5 px-4 py-2.5 text-xs text-white/80 hover:text-white hover:bg-white/5 transition"
+                        className="flex items-center gap-2.5 px-4 py-2.5 text-xs text-theme-muted hover:text-theme-main hover:bg-black/5 dark:hover:bg-white/5 transition"
                       >
                         <FiHeart className="text-pink-400" /> Wishlist ({totalWishlist})
                       </Link>
@@ -208,16 +212,16 @@ const Navbar = () => {
                       <Link
                         href="/admin"
                         onClick={() => setDropdownOpen(false)}
-                        className="flex items-center gap-2.5 px-4 py-2.5 text-xs text-amber-400 hover:text-amber-300 hover:bg-white/5 transition font-medium"
+                        className="flex items-center gap-2.5 px-4 py-2.5 text-xs text-amber-500 hover:text-amber-400 hover:bg-black/5 dark:hover:bg-white/5 transition font-medium"
                       >
                         <FiGrid /> Admin Dashboard
                       </Link>
 
-                      <div className="h-px bg-white/5 my-1" />
+                      <div className="h-px bg-theme-subtle my-1" />
 
                       <button
                         onClick={handleLogout}
-                        className="w-full flex items-center gap-2.5 px-4 py-2 text-xs text-pink-400 hover:text-pink-300 hover:bg-pink-500/10 transition text-left font-medium"
+                        className="w-full flex items-center gap-2.5 px-4 py-2 text-xs text-pink-500 hover:text-pink-400 hover:bg-pink-500/10 transition text-left font-medium cursor-pointer"
                       >
                         <FiLogOut /> Logout
                       </button>
@@ -228,7 +232,7 @@ const Navbar = () => {
                 <div className="flex items-center gap-2">
                   <Link
                     href="/login"
-                    className="px-3.5 py-1.5 rounded-xl text-xs font-semibold text-white/80 hover:text-white border border-white/15 hover:border-white/30 transition"
+                    className="px-3.5 py-1.5 rounded-xl text-xs font-semibold text-theme-muted hover:text-theme-main border border-theme hover:border-[#ff2d6b]/50 transition"
                   >
                     Login
                   </Link>
@@ -245,7 +249,7 @@ const Navbar = () => {
             {/* Mobile Hamburger Button */}
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="md:hidden p-2 text-white/80 hover:text-white focus:outline-none"
+              className="md:hidden p-2 text-theme-muted hover:text-theme-main focus:outline-none"
             >
               {menuOpen ? "✕" : "☰"}
             </button>
@@ -254,7 +258,7 @@ const Navbar = () => {
 
         {/* Mobile Navigation Drawer */}
         {menuOpen && (
-          <div className="md:hidden bg-[#0d0d35] border-t border-white/5 px-6 py-4 flex flex-col gap-3">
+          <div className="md:hidden bg-theme-card-solid border-t border-theme px-6 py-4 flex flex-col gap-3 text-theme-main">
             {navLinks.map((link) => (
               <Link
                 key={link.href}

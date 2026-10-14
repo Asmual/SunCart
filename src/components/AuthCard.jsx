@@ -115,17 +115,17 @@ export default function AuthCard({ initialMode = "login" }) {
       <div className="absolute -bottom-12 -right-12 w-48 h-48 bg-purple-600/30 rounded-full blur-3xl pointer-events-none" />
 
       {/* Main Glassmorphic Card Container */}
-      <div className="relative bg-white/[0.04] backdrop-blur-2xl border border-white/15 rounded-3xl p-6 sm:p-8 shadow-[0_8px_32px_0_rgba(0,0,0,0.45)] text-white">
+      <div className="relative bg-theme-card border border-theme rounded-3xl p-6 sm:p-8 shadow-2xl text-theme-main transition-colors duration-300">
 
         {/* Return to Store Bar */}
         <div className="flex items-center justify-between mb-5">
           <Link
             href="/"
-            className="text-[11px] text-white/50 hover:text-white flex items-center gap-1 transition"
+            className="text-[11px] text-theme-muted hover:text-theme-main flex items-center gap-1 transition"
           >
             ← Return to Store
           </Link>
-          <span className="text-[10px] text-pink-400 font-bold bg-pink-500/10 px-2 py-0.5 rounded-full border border-pink-500/20">
+          <span className="text-[10px] text-[#ff2d6b] font-bold bg-pink-500/10 px-2 py-0.5 rounded-full border border-pink-500/20">
             🔒 Secure Access
           </span>
         </div>
@@ -133,24 +133,24 @@ export default function AuthCard({ initialMode = "login" }) {
         {/* Brand Header */}
         <div className="text-center mb-6">
           <Link href="/" className="inline-block">
-            <span className="font-black text-2xl tracking-tight">
+            <span className="font-black text-2xl tracking-tight text-theme-main">
               Sun<span className="text-[#ff2d6b]">Cart</span>
             </span>
           </Link>
-          <p className="text-xs text-white/50 mt-1">
+          <p className="text-xs text-theme-muted mt-1">
             {mode === "login" ? "Sign in to access your summer cart & orders" : "Create an account and start summer shopping"}
           </p>
         </div>
 
         {/* Smart Segmented Pill Tab Switcher */}
-        <div className="relative flex items-center bg-white/5 border border-white/10 p-1 rounded-2xl mb-6">
+        <div className="relative flex items-center bg-theme-subtle border border-theme p-1 rounded-2xl mb-6">
           <button
             type="button"
             onClick={() => setMode("login")}
-            className={`flex-1 py-2 text-xs font-bold rounded-xl transition-all duration-300 ${
+            className={`flex-1 py-2 text-xs font-bold rounded-xl transition-all duration-300 cursor-pointer ${
               mode === "login"
                 ? "bg-[#ff2d6b] text-white shadow-md shadow-[#ff2d6b]/30"
-                : "text-white/60 hover:text-white"
+                : "text-theme-muted hover:text-theme-main"
             }`}
           >
             Sign In
@@ -158,10 +158,10 @@ export default function AuthCard({ initialMode = "login" }) {
           <button
             type="button"
             onClick={() => setMode("register")}
-            className={`flex-1 py-2 text-xs font-bold rounded-xl transition-all duration-300 ${
+            className={`flex-1 py-2 text-xs font-bold rounded-xl transition-all duration-300 cursor-pointer ${
               mode === "register"
                 ? "bg-[#ff2d6b] text-white shadow-md shadow-[#ff2d6b]/30"
-                : "text-white/60 hover:text-white"
+                : "text-theme-muted hover:text-theme-main"
             }`}
           >
             Create Account
@@ -172,40 +172,40 @@ export default function AuthCard({ initialMode = "login" }) {
         {mode === "login" ? (
           <form onSubmit={handleLogin} className="space-y-4">
             <div>
-              <label className="text-[11px] font-semibold text-white/60 uppercase tracking-wider block mb-1">
+              <label className="text-[11px] font-semibold text-theme-muted uppercase tracking-wider block mb-1">
                 Email Address
               </label>
               <div className="relative">
-                <FiMail className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/40 text-sm" />
+                <FiMail className="absolute left-3.5 top-1/2 -translate-y-1/2 text-theme-muted text-sm" />
                 <input
                   type="email"
                   required
                   value={loginEmail}
                   onChange={(e) => setLoginEmail(e.target.value)}
                   placeholder="name@example.com"
-                  className="w-full pl-10 pr-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-xs text-white placeholder-white/20 outline-none focus:border-[#ff2d6b] focus:bg-white/8 transition"
+                  className="w-full pl-10 pr-4 py-2.5 bg-theme-input border border-theme rounded-xl text-xs text-theme-main placeholder:text-theme-muted/50 outline-none focus:border-[#ff2d6b] transition"
                 />
               </div>
             </div>
 
             <div>
-              <label className="text-[11px] font-semibold text-white/60 uppercase tracking-wider block mb-1">
+              <label className="text-[11px] font-semibold text-theme-muted uppercase tracking-wider block mb-1">
                 Password
               </label>
               <div className="relative">
-                <FiLock className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/40 text-sm" />
+                <FiLock className="absolute left-3.5 top-1/2 -translate-y-1/2 text-theme-muted text-sm" />
                 <input
                   type={showLoginPass ? "text" : "password"}
                   required
                   value={loginPass}
                   onChange={(e) => setLoginPass(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full pl-10 pr-10 py-2.5 bg-white/5 border border-white/10 rounded-xl text-xs text-white placeholder-white/20 outline-none focus:border-[#ff2d6b] focus:bg-white/8 transition"
+                  className="w-full pl-10 pr-10 py-2.5 bg-theme-input border border-theme rounded-xl text-xs text-theme-main placeholder:text-theme-muted/50 outline-none focus:border-[#ff2d6b] transition"
                 />
                 <button
                   type="button"
                   onClick={() => setShowLoginPass(!showLoginPass)}
-                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-white/40 hover:text-white transition"
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-theme-muted hover:text-theme-main transition cursor-pointer"
                 >
                   {showLoginPass ? <FiEyeOff size={14} /> : <FiEye size={14} />}
                 </button>
@@ -215,7 +215,7 @@ export default function AuthCard({ initialMode = "login" }) {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3 bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-500 hover:to-rose-500 text-white font-bold rounded-xl text-xs transition shadow-lg shadow-pink-600/30 flex items-center justify-center gap-1.5 disabled:opacity-60 disabled:cursor-not-allowed hover:-translate-y-0.5"
+              className="w-full py-3 bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-500 hover:to-rose-500 text-white font-bold rounded-xl text-xs transition shadow-lg shadow-pink-600/30 flex items-center justify-center gap-1.5 disabled:opacity-60 disabled:cursor-not-allowed hover:-translate-y-0.5 cursor-pointer"
             >
               {loading ? (
                 <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
@@ -228,57 +228,57 @@ export default function AuthCard({ initialMode = "login" }) {
           /* REGISTER FORM */
           <form onSubmit={handleRegister} className="space-y-3.5">
             <div>
-              <label className="text-[11px] font-semibold text-white/60 uppercase tracking-wider block mb-1">
+              <label className="text-[11px] font-semibold text-theme-muted uppercase tracking-wider block mb-1">
                 Full Name
               </label>
               <div className="relative">
-                <FiUser className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/40 text-sm" />
+                <FiUser className="absolute left-3.5 top-1/2 -translate-y-1/2 text-theme-muted text-sm" />
                 <input
                   type="text"
                   required
                   value={regForm.name}
                   onChange={(e) => setRegForm({ ...regForm, name: e.target.value })}
                   placeholder="e.g. Asmual Hoque"
-                  className="w-full pl-10 pr-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-xs text-white placeholder-white/20 outline-none focus:border-[#ff2d6b] focus:bg-white/8 transition"
+                  className="w-full pl-10 pr-4 py-2.5 bg-theme-input border border-theme rounded-xl text-xs text-theme-main placeholder:text-theme-muted/50 outline-none focus:border-[#ff2d6b] transition"
                 />
               </div>
             </div>
 
             <div>
-              <label className="text-[11px] font-semibold text-white/60 uppercase tracking-wider block mb-1">
+              <label className="text-[11px] font-semibold text-theme-muted uppercase tracking-wider block mb-1">
                 Email Address
               </label>
               <div className="relative">
-                <FiMail className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/40 text-sm" />
+                <FiMail className="absolute left-3.5 top-1/2 -translate-y-1/2 text-theme-muted text-sm" />
                 <input
                   type="email"
                   required
                   value={regForm.email}
                   onChange={(e) => setRegForm({ ...regForm, email: e.target.value })}
                   placeholder="name@example.com"
-                  className="w-full pl-10 pr-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-xs text-white placeholder-white/20 outline-none focus:border-[#ff2d6b] focus:bg-white/8 transition"
+                  className="w-full pl-10 pr-4 py-2.5 bg-theme-input border border-theme rounded-xl text-xs text-theme-main placeholder:text-theme-muted/50 outline-none focus:border-[#ff2d6b] transition"
                 />
               </div>
             </div>
 
             <div>
-              <label className="text-[11px] font-semibold text-white/60 uppercase tracking-wider block mb-1">
+              <label className="text-[11px] font-semibold text-theme-muted uppercase tracking-wider block mb-1">
                 Password
               </label>
               <div className="relative">
-                <FiLock className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/40 text-sm" />
+                <FiLock className="absolute left-3.5 top-1/2 -translate-y-1/2 text-theme-muted text-sm" />
                 <input
                   type={showRegPass ? "text" : "password"}
                   required
                   value={regForm.password}
                   onChange={(e) => setRegForm({ ...regForm, password: e.target.value })}
                   placeholder="At least 6 characters"
-                  className="w-full pl-10 pr-10 py-2.5 bg-white/5 border border-white/10 rounded-xl text-xs text-white placeholder-white/20 outline-none focus:border-[#ff2d6b] focus:bg-white/8 transition"
+                  className="w-full pl-10 pr-10 py-2.5 bg-theme-input border border-theme rounded-xl text-xs text-theme-main placeholder:text-theme-muted/50 outline-none focus:border-[#ff2d6b] transition"
                 />
                 <button
                   type="button"
                   onClick={() => setShowRegPass(!showRegPass)}
-                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-white/40 hover:text-white transition"
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-theme-muted hover:text-theme-main transition cursor-pointer"
                 >
                   {showRegPass ? <FiEyeOff size={14} /> : <FiEye size={14} />}
                 </button>
@@ -286,23 +286,23 @@ export default function AuthCard({ initialMode = "login" }) {
             </div>
 
             <div>
-              <label className="text-[11px] font-semibold text-white/60 uppercase tracking-wider block mb-1">
+              <label className="text-[11px] font-semibold text-theme-muted uppercase tracking-wider block mb-1">
                 Confirm Password
               </label>
               <div className="relative">
-                <FiLock className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/40 text-sm" />
+                <FiLock className="absolute left-3.5 top-1/2 -translate-y-1/2 text-theme-muted text-sm" />
                 <input
                   type={showConfirmPass ? "text" : "password"}
                   required
                   value={regForm.confirmPassword}
                   onChange={(e) => setRegForm({ ...regForm, confirmPassword: e.target.value })}
                   placeholder="Repeat your password"
-                  className="w-full pl-10 pr-10 py-2.5 bg-white/5 border border-white/10 rounded-xl text-xs text-white placeholder-white/20 outline-none focus:border-[#ff2d6b] focus:bg-white/8 transition"
+                  className="w-full pl-10 pr-10 py-2.5 bg-theme-input border border-theme rounded-xl text-xs text-theme-main placeholder:text-theme-muted/50 outline-none focus:border-[#ff2d6b] transition"
                 />
                 <button
                   type="button"
                   onClick={() => setShowConfirmPass(!showConfirmPass)}
-                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-white/40 hover:text-white transition"
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-theme-muted hover:text-theme-main transition cursor-pointer"
                 >
                   {showConfirmPass ? <FiEyeOff size={14} /> : <FiEye size={14} />}
                 </button>
@@ -312,7 +312,7 @@ export default function AuthCard({ initialMode = "login" }) {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3 bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-500 hover:to-rose-500 text-white font-bold rounded-xl text-xs transition shadow-lg shadow-pink-600/30 flex items-center justify-center gap-1.5 disabled:opacity-60 disabled:cursor-not-allowed hover:-translate-y-0.5"
+              className="w-full py-3 bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-500 hover:to-rose-500 text-white font-bold rounded-xl text-xs transition shadow-lg shadow-pink-600/30 flex items-center justify-center gap-1.5 disabled:opacity-60 disabled:cursor-not-allowed hover:-translate-y-0.5 cursor-pointer"
             >
               {loading ? (
                 <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
@@ -325,15 +325,15 @@ export default function AuthCard({ initialMode = "login" }) {
 
         {/* Divider */}
         <div className="flex items-center gap-3 my-5">
-          <div className="flex-1 h-px bg-white/10" />
-          <span className="text-white/30 text-[10px] uppercase tracking-wider">or sign in with</span>
-          <div className="flex-1 h-px bg-white/10" />
+          <div className="flex-1 h-px bg-theme-subtle" />
+          <span className="text-theme-muted text-[10px] uppercase tracking-wider">or sign in with</span>
+          <div className="flex-1 h-px bg-theme-subtle" />
         </div>
 
         {/* Google OAuth Button */}
         <button
           onClick={handleGoogle}
-          className="w-full flex items-center justify-center gap-2.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl py-2.5 text-xs text-white/80 hover:text-white transition active:scale-98"
+          className="w-full flex items-center justify-center gap-2.5 bg-theme-subtle hover:bg-theme-card border border-theme rounded-xl py-2.5 text-xs text-theme-main transition active:scale-98 cursor-pointer"
         >
           <FcGoogle size={18} /> Continue with Google
         </button>
