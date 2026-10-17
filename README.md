@@ -1,4 +1,4 @@
-# ☀️ SunCart — ummer Essentials & Lifestyle Store
+# ☀️ SunCart — Summer Essentials & Lifestyle Store
 
 > A modern, full-stack eCommerce platform where users can explore and purchase seasonal products like sunglasses, summer outfits, skincare, beach accessories, and footwear.
 
