@@ -84,5 +84,5 @@
 ---
 
 ## 👨‍💻 Author
-* 👤 **Name:** Asmual Obaidul Hoque
+* 👤 **Name:** Asmual Obaidul Hoquee
 * 📧 **Email:** Asmual01@gmail.com
